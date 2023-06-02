@@ -12,11 +12,11 @@ int	main(int argc, char *argv[], char **env)
 		printf("%s\n", a[1]);
 		printf("%s\n", a[2]);
 		printf("%s\n", a[3]);
-		printf("%s\n", a[4]);
-		printf("%s\n", a[5]);
-		printf("%s\n", a[6]);
-		printf("%s\n", a[7]);
-		printf("%s\n", a[8]);
-		printf("%s\n", a[9]);
+		//printf("%s\n", a[4]);
+		//printf("%s\n", a[5]);
+		//printf("%s\n", a[6]);
+		//printf("%s\n", a[7]);
+		//printf("%s\n", a[8]);
+		//printf("%s\n", a[9]);
 	}
 }

@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-int	word_count(char *prompt, int counter, int i, char quotes)
+static int	word_count(char *prompt, int counter, int i, char quotes)
 {
 	int	end;
 
@@ -27,30 +27,6 @@ int	word_count(char *prompt, int counter, int i, char quotes)
 		counter++;
 	}
 	return (counter);
-}
-
-char	*allocator(char *ret, char *src, int len)
-{
-	int	i;
-
-	i = 0;
-	while (i < len)
-	{
-		ret[i] = src[i];
-		i++;
-	}
-	ret[i] = '\0';
-	return (ret);
-}
-
-void	quotes_skipper(int *i, char *prompt)
-{
-	char	quotes;
-
-	quotes = prompt[*i];
-	*i = *i + 1;
-	while (prompt[*i] != quotes)
-		*i = *i + 1;
 }
 
 char	**lexer(char *prompt, int i, int j, int end)
