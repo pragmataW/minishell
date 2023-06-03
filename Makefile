@@ -18,6 +18,5 @@ fclean: clean
 
 re: fclean all
 
-
 norm:
 	norminette
