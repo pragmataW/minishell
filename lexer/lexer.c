@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-void	lexer_extra(char *prompt, int *i, char **tmp)
+static void	lexer_extra(char *prompt, int *i, char **tmp)
 {
 	while ((prompt[*i] == ' ' || prompt[*i] == '\t') && prompt[*i] != '\0')
 			*i = *i + 1;
