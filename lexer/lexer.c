@@ -1,59 +1,39 @@
 #include "../minishell.h"
 
-static int	word_count(char *prompt, int counter, int i, char quotes)
+void	lexer_extra(char *prompt, int *i, char **tmp)
 {
-	int	end;
-
-	end = 0;
-	while (prompt[end])
-		end++;
-	while (prompt[end] == ' ' || prompt[end] == '\t' || prompt[end] == '\0')
-		end--;
-	while (prompt[i] && i <= end)
+	while ((prompt[*i] == ' ' || prompt[*i] == '\t') && prompt[*i] != '\0')
+			*i = *i + 1;
+	*tmp = &prompt[*i];
+	while (prompt[*i] != ' ' && prompt[*i] != '\t' && prompt[*i] != '\0')
 	{
-		while ((prompt[i] == ' ' || prompt[i] == '\t') && prompt[i] != '\0')
-			i++;
-		while (prompt[i] != ' ' && prompt[i] != '\t' && prompt[i] != '\0')
-		{
-			if (prompt[i] == 34 || prompt[i] == 39)
-			{
-				quotes = prompt[i];
-				i++;
-				while (prompt[i] != quotes)
-					i++;
-			}
-			i++;
-		}
-		counter++;
+		if (prompt[*i] == 34 || prompt[*i] == 39)
+			quotes_skipper(i, prompt);
+		*i = *i + 1;
 	}
-	return (counter);
 }
 
-char	**lexer(char *prompt, int i, int j, int end)
+t_list	**lexer(char *prompt, int i, int j, int end)
 {
-	char	**ret;
+	t_list	*cmd;
+	t_list	**root;
+	char	*command;
 	char	*tmp;
 
-	ret = malloc(sizeof(char *) * word_count(prompt, 0, 0, 0) + 1);
-	ret[word_count(prompt, 0, 0, 0)] = NULL;
+	root = malloc(sizeof(t_list *));
+	*root = NULL;
 	while (prompt[end])
 		end++;
 	while (prompt[end] == ' ' || prompt[end] == '\t' || prompt[end] == '\0')
 		end--;
 	while (prompt[i] && i <= end)
 	{
-		while ((prompt[i] == ' ' || prompt[i] == '\t') && prompt[i] != '\0')
-			i++;
-		tmp = &prompt[i];
-		while (prompt[i] != ' ' && prompt[i] != '\t' && prompt[i] != '\0')
-		{
-			if (prompt[i] == 34 || prompt[i] == 39)
-				quotes_skipper(&i, prompt);
-			i++;
-		}
-		ret[j] = malloc(sizeof(char) * ((&(prompt[i]) - tmp) + 1));
-		allocator(ret[j], tmp, &(prompt[i]) - tmp);
+		lexer_extra(prompt, &i, &tmp);
+		command = malloc(sizeof(char) * ((&(prompt[i]) - tmp) + 1));
+		allocator(command, tmp, &(prompt[i]) - tmp);
+		cmd = ft_lstnew(command);
+		ft_lstadd_back(root, cmd);
 		j++;
 	}
-	return (ret);
+	return (root);
 }

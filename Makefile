@@ -1,5 +1,5 @@
 all: 
-	make -C ./libft
+	make bonus -C ./libft
 	cp ./libft/libft.a .
 	gcc minishell.c ./lexer/*.c -lreadline -L /goinfre/homebrew/opt/readline/lib libft.a
 

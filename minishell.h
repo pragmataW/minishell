@@ -12,7 +12,7 @@
 # include "libft/libft.h"
 
 //! LEXER
-char	**lexer(char *prompt, int i, int j, int end);
+t_list	**lexer(char *prompt, int i, int j, int end);
 //! LEXER UTILS
 char	*allocator(char *ret, char *src, int len);
 void	quotes_skipper(int *i, char *prompt);
