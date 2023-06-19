@@ -13,7 +13,9 @@
 
 //! LEXER
 t_list	**lexer(char *prompt, int i, int j, int end);
+t_list	**trim_all(t_list **splited_str);
 //! LEXER UTILS
 char	*allocator(char *ret, char *src, int len);
 void	quotes_skipper(int *i, char *prompt);
+int		command_len(char *cmd);
 #endif

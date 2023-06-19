@@ -17,6 +17,7 @@ t_list	**lexer(char *prompt, int i, int j, int end)
 {
 	t_list	*cmd;
 	t_list	**root;
+	t_list	**ret;
 	char	*command;
 	char	*tmp;
 
@@ -35,5 +36,6 @@ t_list	**lexer(char *prompt, int i, int j, int end)
 		ft_lstadd_back(root, cmd);
 		j++;
 	}
-	return (root);
+	ret = trim_all(root);
+	return (ret);
 }
