@@ -1,0 +1,16 @@
+☐ lexer'da leak var, okula gidince çöz
+☐ expender yap
+    ☐ env'ler için bir struct aç, key - value şeklinde tut. structlari komut listende nested struct şeklinde tut
+    gerektiği yerde strcmp ile kontrol et key'ler eşleşiyorsa yerine value koy.
+    ☐ $$
+    ☐ $?
+    ☐ ~
+    ☐ leak var mi kontrol et
+☐ parser yap
+    ☐ bir struct aç, command table'in olsun. Pipe'dan Pipe'a tüm hepsi struct içinde olsun. Gerekli şekilde tokenle 
+    ne şekilde tokenleyeceğini birilerine sor, komutlarin calismasi icin bir hiyerarsi komutlarin
+    ☐ leak kontrolü yap
+☐ executer yap
+    ☐ Her bir komut bir process olacağindan yapiyi kurmak için processleri öğren.
+    ☐ redirect ve pipe iletişimlerini araştir (oynatma listesi var) insanlara sor
+    ☐ öğrendikten sonra devam edecek.
