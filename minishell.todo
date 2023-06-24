@@ -1,8 +1,6 @@
 ☐ lexer'da leak var, okula gidince çöz
 ☐ expender yap
-    ☐ env'ler için bir struct aç, key - value şeklinde tut. structlari komut listende nested struct şeklinde tut
-    gerektiği yerde strcmp ile kontrol et key'ler eşleşiyorsa yerine value koy.
-    ☐ $$
+    ✔ env'ler için bir struct aç, key - value şeklinde tut. structlari komut listende nested struct şeklinde tut gerektiği yerde strcmp ile kontrol et key'ler eşleşiyorsa yerine value koy. @done (6/24/2023, 5:35:15 PM)
     ☐ $?
     ☐ ~
     ☐ leak var mi kontrol et

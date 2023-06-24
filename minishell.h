@@ -34,8 +34,8 @@ t_list	**trim_all(t_list **splited_str);
 char	*allocator(char *ret, char *src, int len);
 void	quotes_skipper(int *i, char *prompt);
 int		command_len(char *cmd);
-//! EXPANDER
+//! INIT_ENV
 t_env	*env_variables(char **env, int env_count);
-//! EXPANDER UTILS
+//! INIT_ENV UTILS
 int		find_char(char *str, char c);
 #endif
