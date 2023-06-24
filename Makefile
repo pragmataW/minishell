@@ -1,12 +1,12 @@
 all: 
 	make bonus -C ./libft
 	cp ./libft/libft.a .
-	gcc minishell.c ./lexer/*.c -lreadline -L /goinfre/homebrew/opt/readline/lib libft.a
+	gcc minishell.c ./lexer/*.c ./expander/*.c -lreadline -L /goinfre/homebrew/opt/readline/lib libft.a
 
 debug:
 	make -C ./libft
 	cp ./libft/libft.a .
-	gcc minishell.c -g ./lexer/*.c -lreadline -L /goinfre/homebrew/opt/readline/lib libft.a
+	gcc minishell.c -g ./lexer/*.c /expander/*.c -lreadline -L /goinfre/homebrew/opt/readline/lib libft.a
 
 clean:
 	rm -rf a.out

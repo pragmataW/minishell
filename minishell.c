@@ -1,10 +1,10 @@
 #include "minishell.h"
 
-void free_list(t_list **list)
+void	free_list(t_list **list)
 {
 	t_list	*iter;
 	t_list	*tmp;
-	
+
 	iter = *list;
 	while (iter)
 	{
