@@ -1,5 +1,11 @@
 #include "../minishell.h"
 
+static void	expand_quote(t_list *node, char **env)
+{
+	//! Yapilacak...
+	return ;
+}
+
 static void	expand_dollar(t_list *node, char **env)
 {
 	t_env	*envs;
