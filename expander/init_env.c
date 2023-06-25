@@ -4,7 +4,6 @@ t_env	*env_variables(char **env, int env_count)
 {
 	t_env	*ret;
 	int		i;
-	int		j;
 	int		s_i;
 
 	while (env[env_count])
@@ -16,7 +15,6 @@ t_env	*env_variables(char **env, int env_count)
 	ret->keys[env_count] = NULL;
 	ret->values[env_count] = NULL;
 	i = 0;
-	j = 0;
 	while (env[i])
 	{
 		s_i = find_char(env[i], '=');
@@ -26,5 +24,6 @@ t_env	*env_variables(char **env, int env_count)
 		allocator(ret->values[i], &(env[i][s_i + 1]), ft_strlen(env[i]) - s_i);
 		i++;
 	}
+	ret->tilda = find_values(ret, "HOME");
 	return (ret);
 }
