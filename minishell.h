@@ -41,4 +41,6 @@ t_env	*env_variables(char **env, int env_count);
 int		find_char(char *str, char c);
 //!EXPANDER UTILS
 char	*find_values(t_env *env, char *kw);
+//! EXPANDER
+void	expander(t_list **splitted_str, char **env);
 #endif
