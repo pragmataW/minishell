@@ -1,9 +1,8 @@
 #include "../minishell.h"
 
-static void	expand_quote(t_list *node, char **env)
+static void	expand_quote(t_list *n, char **env)
 {
-	//! Yapilacak...
-	return ;
+	return ; //! Yapilacak
 }
 
 static void	expand_dollar(t_list *node, char **env)
@@ -13,10 +12,8 @@ static void	expand_dollar(t_list *node, char **env)
 
 	envs = env_variables(env, 0);
 	new_str = find_values(envs, &node->command[1]);
-	printf("new str: %s\n", new_str);
 	free(node->command);
 	node->command = new_str;
-	printf("node's command: %s\n", node->command);
 }
 
 static void	expand_tilda(t_list *n, char **env)

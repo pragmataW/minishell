@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-char	*allocator(char *ret, char *src, int len)
+void	allocator(char *ret, char *src, int len)
 {
 	int	i;
 
@@ -11,7 +11,6 @@ char	*allocator(char *ret, char *src, int len)
 		i++;
 	}
 	ret[i] = '\0';
-	return (ret);
 }
 
 void	quotes_skipper(int *i, char *prompt)

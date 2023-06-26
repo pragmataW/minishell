@@ -2,7 +2,7 @@
 ☐ expender yap
     ✔ env'ler için bir struct aç, key - value şeklinde tut. structlari komut listende nested struct şeklinde tut gerektiği yerde strcmp ile kontrol et key'ler eşleşiyorsa yerine value koy. @done (6/24/2023, 5:35:15 PM)
     ☐ $?
-    ☐ ~
+    ✔ ~ @done (6/25/2023, 9:11:46 PM)
     ☐ leak var mi kontrol et (trim_all fonksiyonunda leak olma ihtimali yüksek, yeni bir dizi oluşturup ret'e veriyoruz ama ret'i freelemiyoruz.)
 ☐ parser yap
     ☐ bir struct aç, command table'in olsun. Pipe'dan Pipe'a tüm hepsi struct içinde olsun. Gerekli şekilde tokenle 
