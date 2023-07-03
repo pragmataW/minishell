@@ -47,6 +47,7 @@ void	expand_dollar(t_list **splitted_str, t_env *env, int i, int j)
 				i++;
 				while (iter->command[i] != '\'' && iter->command[i] != '\0')
 					new_str[k++] = iter->command[i++];
+				i++;
 			}
 			if (iter->command[i] == '\"')
 				i++;
@@ -54,23 +55,28 @@ void	expand_dollar(t_list **splitted_str, t_env *env, int i, int j)
 			{
 				i++;
 				while (iter->command[i] != ' ' && iter->command[i] != '\''
-					|| iter->command[i] != '\"' && iter->command[i] != '\0'
-					|| iter->command[i] != '$')
+					&& iter->command[i] != '\"' && iter->command[i] != '\0'
+					&& iter->command[i] != '$')
 					env_key[j++] = iter->command[i++];
 				env_key[j] = '\0';
 				env_key = ft_str_realloc(env_key);
 				free(env_var);
 				env_var = find_values(env, env_key);
-				free(env_key);
-				j = 0;
-				while (env_var[j])
-					new_str[k++] = env_var[j++];
+				if (env_var != NULL)
+				{
+					free(env_key);
+					j = 0;
+					while (env_var[j])
+						new_str[k++] = env_var[j++];
+				}
 			}
-			new_str[k++] = iter->command[i++];
+			if (iter->command[i] != '\"')
+				new_str[k++] = iter->command[i++];
+			else
+				i++;
 		}
 		new_str[k] = '\0';
 		new_str = ft_str_realloc(new_str);
-		printf("%s\n", new_str);
 		new_command(iter, new_str);
 		free(new_str);
 		iter = iter->next;
@@ -80,9 +86,7 @@ void	expand_dollar(t_list **splitted_str, t_env *env, int i, int j)
 void	expander(t_list **splitted_str, char **env)
 {
 	t_env	*envs;
-	t_list	*iter;
 
-	envs = env_variables(env, 0);
-	iter = *splitted_str;
+	envs = env_variables(env, 0); //!MUHTEMMEL HATALI FONKSİYON COZMUS OLABILIRIM SABAH DENE
 	expand_dollar(splitted_str, envs, 0, 0);
 }

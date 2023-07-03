@@ -45,4 +45,5 @@ void	new_command(t_list *iter, char *str)
 		iter->command[i] = str[i];
 		i++;
 	}
+	iter->command[i] = '\0';
 }
