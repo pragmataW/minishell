@@ -41,6 +41,9 @@ t_env	*env_variables(char **env, int env_count);
 int		find_char(char *str, char c);
 //!EXPANDER UTILS
 char	*find_values(t_env *env, char *kw);
+void	new_command(t_list *iter, char *str);
+char	*ft_str_realloc(char *str);
 //! EXPANDER
 void	expander(t_list **splitted_str, char **env);
+void	expand_dollar(t_list **splitted_str, t_env *env, int i, int j);
 #endif

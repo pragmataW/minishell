@@ -25,6 +25,7 @@ int	main(int argc, char *argv[], char **env)
 	while (1)
 	{
 		splited_str = lexer(prompt, 0, 0, 0);
+        expander(splited_str, env);
 		iter = *splited_str;
 		while (iter)
 		{
