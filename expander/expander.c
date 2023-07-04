@@ -37,8 +37,6 @@ void	expand_dollar(t_list **splitted_str, t_env *env, int i, int j)
 	{
 		i = 0;
 		new_str = malloc(sizeof(char) * 10000);
-		env_var = malloc(sizeof(char) * 1);
-		env_key = malloc(sizeof(char) * 100);
 		k = 0;
 		while (iter->command[i])
 		{
@@ -47,12 +45,13 @@ void	expand_dollar(t_list **splitted_str, t_env *env, int i, int j)
 				i++;
 				while (iter->command[i] != '\'' && iter->command[i] != '\0')
 					new_str[k++] = iter->command[i++];
-				i++;
 			}
 			if (iter->command[i] == '\"')
 				i++;
 			if (iter->command[i] == '$')
 			{
+				j = 0;
+				env_key = malloc(sizeof(char) * 100);
 				i++;
 				while (iter->command[i] != ' ' && iter->command[i] != '\''
 					&& iter->command[i] != '\"' && iter->command[i] != '\0'
@@ -60,17 +59,17 @@ void	expand_dollar(t_list **splitted_str, t_env *env, int i, int j)
 					env_key[j++] = iter->command[i++];
 				env_key[j] = '\0';
 				env_key = ft_str_realloc(env_key);
-				free(env_var);
 				env_var = find_values(env, env_key);
+				free(env_key);
 				if (env_var != NULL)
-				{
-					free(env_key);
+				{	
 					j = 0;
 					while (env_var[j])
 						new_str[k++] = env_var[j++];
+					free(env_var);
 				}
 			}
-			if (iter->command[i] != '\"')
+			else if (iter->command[i] != '\"')
 				new_str[k++] = iter->command[i++];
 			else
 				i++;
