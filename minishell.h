@@ -40,12 +40,16 @@ t_env		*env_variables(char **env, int env_count);
 //! INIT_ENV UTILS
 int			find_char(char *str, char c);
 //!EXPANDER UTILS
+void		expand_quote(t_list *iter, int *i, char *new_str, int *j);
+void		expand_single_quote(t_list *iter, int *i, char *new_str, int *j);
+void		expand_dollar(t_list *iter, int *i, char *new_str, int *j);
+//! EXPANDER UTILS EXTRA
 char		*find_values(t_env *env, char *kw);
-void		new_command(t_list *iter, char *str);
 char		*ft_str_realloc(char *str);
+void		expand_normal(t_list *iter, int *i, char *new_str, int *j);
+void		new_command(t_list *iter, char *str);
 //! EXPANDER
 static void	expand_tilda(t_list **splitted_str, char **env, int i, int j);
-void		expand_dollar(t_list *iter, int *i, char *new_str, int *j);
 void		expander(t_list **splitted_str, char **env);
 void		expand_var(t_list **splitted_str, int i, int j);
 #endif

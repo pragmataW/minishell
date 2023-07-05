@@ -1,49 +1,59 @@
 #include "../minishell.h"
 
-char	*find_values(t_env *env, char *kw)
+void	expand_quote(t_list *iter, int *i, char *new_str, int *j)
 {
-	int	i;
-
-	i = 0;
-	while (env->keys[i] != NULL)
+	*i = *i + 1;
+	while (iter->command[*i] != '\"' && iter->command[*i])
 	{
-		if (ft_strncmp(env->keys[i], kw) == 0)
-			return (ft_strdup(env->values[i]));
-		i++;
+		if (iter->command[*i] == '$')
+			expand_dollar(iter, i, new_str, j);
+		else
+		{
+			new_str[*j] = iter->command[*i];
+			*j = *j + 1;
+			*i = *i + 1;
+		}
 	}
-	return (NULL);
+	*i = *i + 1;
 }
 
-char	*ft_str_realloc(char *str)
-{
-	int		i;
-	char	*ret;
 
-	i = 0;
-	ret = malloc(sizeof(char) * strlen(str) + 1);
-	while (str[i])
+void	expand_single_quote(t_list *iter, int *i, char *new_str, int *j)
+{
+	*i = *i + 1;
+	while (iter->command[*i] != '\'' && iter->command[*i])
 	{
-		ret[i] = str[i];
-		i++;
+		new_str[*j] = iter->command[*i];
+		*j = *j + 1;
+		*i = *i + 1;
 	}
-	ret[i] = '\0';
-	free(str);
-	return (ret);
+	*i = *i + 1;
 }
 
-void	new_command(t_list *iter, char *str)
+void	expand_dollar(t_list *it, int *i, char *new_str, int *j)
 {
-	int	i;
-	int	len;
+	char	*env_key;
+	char	*env_var;
 
-	i = 0;
-	len = ft_strlen(str);
-	free(iter->command);
-	iter->command = malloc((sizeof(char) * len) + 1);
-	while (str[i])
+	*i = *i + 1;
+	data.counter = 0;
+	env_key = malloc(sizeof(char ) * 100);
+	while (it->command[*i] != ' ' && it->command[*i] != '\''
+		&& it->command[*i] != '\"' && it->command[*i] != '\0'
+		&& it->command[*i] != '$')
 	{
-		iter->command[i] = str[i];
-		i++;
+			env_key[data.counter++] = it->command[*i];
+			*i = *i + 1;
 	}
-	iter->command[i] = '\0';
+	env_key[data.counter] = '\0';
+	env_var = find_values(data.env, env_key);
+	if (env_var != NULL)
+	{
+		data.counter = 0;
+		while (env_var[data.counter])
+		{
+			new_str[*j] = env_var[data.counter++];
+			*j = *j + 1;
+		}
+	}
 }
