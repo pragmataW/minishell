@@ -17,7 +17,6 @@ void	expand_quote(t_list *iter, int *i, char *new_str, int *j)
 	*i = *i + 1;
 }
 
-
 void	expand_single_quote(t_list *iter, int *i, char *new_str, int *j)
 {
 	*i = *i + 1;
@@ -56,4 +55,27 @@ void	expand_dollar(t_list *it, int *i, char *new_str, int *j)
 			*j = *j + 1;
 		}
 	}
+}
+
+void	tilda_extra(t_list *iter, int *i, char *new_str, int *k)
+{
+	int		j;
+	char	c;
+
+	j = 0;
+	if (iter->command[*i] == '\'' || iter->command[*i] == '\"')
+	{
+		c = iter->command[*i];
+		new_str[(*k)++] = iter->command[(*i)++];
+		while (iter->command[*i] != '\0' && iter->command[*i] != c)
+			new_str[(*k)++] = iter->command[(*i)++];
+	}
+	if (iter->command[*i] == '~' && iter->command[*i - 1] != '/')
+	{
+		while (data.env->tilda[j])
+			new_str[(*k)++] = data.env->tilda[j++];
+		(*i)++;
+	}
+	else
+		new_str[(*k)++] = iter->command[(*i)++];
 }

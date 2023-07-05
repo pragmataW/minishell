@@ -1,45 +1,19 @@
 #include "../minishell.h"
 
-static void	expand_tilda(t_list **splitted_str, char **env, int i, int j)
+static void	expand_tilda(t_list **splitted_str, int i, int k)
 {
 	char	*new_str;
-	char	*var;
-	t_env	*envs;
+	char	c;
 	t_list	*iter;
-	int		k;
 
-	envs = env_variables(env, 0);
 	iter = *splitted_str;
-	var = envs->tilda;
 	while (iter)
 	{
 		k = 0;
 		i = 0;
 		new_str = malloc(sizeof(char) * 10000);
 		while (iter->command[i])
-		{
-			j = 0;
-			if (iter->command[i] == '\'')
-			{
-				new_str[k++] = iter->command[i++];
-				while (iter->command[i] != '\0' && iter->command[i] != '\'')
-					new_str[k++] = iter->command[i++];
-			}
-			if (iter->command[i] == '\"')
-			{
-				new_str[k++] = iter->command[i++];
-				while (iter->command[i] != '\0' && iter->command[i] != '\"')
-					new_str[k++] = iter->command[i++];
-			}
-			if (iter->command[i] == '~')
-			{
-				while (var[j])
-					new_str[k++] = var[j++];
-				i++;
-			}
-			else
-				new_str[k++] = iter->command[i++];
-		}
+			tilda_extra(iter, &i, new_str, &k);
 		new_str[k] = '\0';
 		new_str = ft_str_realloc(new_str);
 		new_command(iter, new_str);
@@ -48,7 +22,7 @@ static void	expand_tilda(t_list **splitted_str, char **env, int i, int j)
 	}
 }
 
-void	expand_var(t_list **splitted_str, int i, int j)
+static void	expand_var(t_list **splitted_str, int i, int j)
 {
 	t_list	*iter;
 	char	*new_str;
@@ -79,6 +53,6 @@ void	expander(t_list **splitted_str, char **env)
 	t_env	*envs;
 
 	envs = env_variables(env, 0);
-	expand_tilda(splitted_str, env, 0, 0);
+	expand_tilda(splitted_str, 0, 0);
 	expand_var(splitted_str, 0, 0);
 }
