@@ -99,8 +99,24 @@ void	expand_var(t_list **splitted_str, int i, int j)
 					else
 						new_str[j++] = iter->command[i++];
 				}
+				i++;
+			}
+			else if (iter->command[i] == '\'')
+			{
+				i++;
+				while (iter->command[i] != '\'' && iter->command[i])
+					new_str[j++] = iter->command[i++];
+				i++;
+			}
+			else
+			{
+				if (iter->command[i] == '$')
+					expand_dollar(iter, &i, new_str, &j);
+				else
+					new_str[j++] = iter->command[i++];
 			}
 		}
+		new_str[j] = '\0';
 		new_command(iter, new_str);
 		iter = iter->next;
 	}
