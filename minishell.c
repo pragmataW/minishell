@@ -1,5 +1,7 @@
 #include "minishell.h"
 
+t_data	data;
+
 void	free_list(t_list **list)
 {
 	t_list	*iter;
@@ -15,12 +17,22 @@ void	free_list(t_list **list)
 	}
 }
 
+void	init_global(char **env)
+{
+	t_env	*envs;
+
+	envs = env_variables(env, 0);
+	data.env = envs;
+	data.counter = 0;
+}
+
 int	main(int argc, char *argv[], char **env)
 {
 	char	*prompt;
 	t_list	**splited_str;
 	t_list	*iter;
 
+	init_global(env);
 	prompt = readline("\033[1;31myciftci🥵minishell->\033[0m");
 	while (1)
 	{

@@ -7,7 +7,7 @@ char	*find_values(t_env *env, char *kw)
 	i = 0;
 	while (env->keys[i] != NULL)
 	{
-		if (ft_strncmp(env->keys[i], kw, ft_strlen(env->keys[i])) == 0)
+		if (ft_strncmp(env->keys[i], kw) == 0)
 			return (ft_strdup(env->values[i]));
 		i++;
 	}

@@ -4,6 +4,12 @@
     eğer dolar görürsen expand et
     eğer tırnak görürsen içerisinde herhangi bir tek tırnak görene kadar skiple dolar görünce expand et
     eğer tek tırnak görürsen, tırnak kapanana kadar ilerle
+    
+    -$PWD $PWD
+    -selam $PWD
+    -"$PWD" -> yazdıracak
+    -"'$PWD'" -> '(expandedpwd)'
+    -'"PWD"' -> "$PWD"
 ☐ parser yap
     ☐ bir struct aç, command table'in olsun. Pipe'dan Pipe'a tüm hepsi struct içinde olsun. Gerekli şekilde tokenle 
     ne şekilde tokenleyeceğini birilerine sor, komutlarin calismasi icin bir hiyerarsi komutlarin
@@ -14,3 +20,4 @@
     ☐ öğrendikten sonra devam edecek.
 
 ilk kısımda sadece new_str freeleniyor diğer 2si kalıyo
+
