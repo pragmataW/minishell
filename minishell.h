@@ -53,4 +53,8 @@ void		new_command(t_list *iter, char *str);
 static void	expand_tilda(t_list **splitted_str, int i, int k);
 void		expander(t_list **splitted_str, char **env);
 static void	expand_var(t_list **splitted_str, int i, int j);
+
+//! PARSER
+void expand_cmd(t_list **splited_str, t_env *env, int i);
+int	is_builtin(char *cmd);
 #endif
