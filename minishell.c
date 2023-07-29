@@ -34,10 +34,10 @@ int	main(int argc, char *argv[], char **env)
 
 	init_global(env);
 	prompt = readline("\033[1;31myciftci🥵minishell->\033[0m");
+	add_history(prompt);
 	while (1)
 	{
 		splited_str = lexer(prompt, 0, 0, 0);
-		expand_cmd(splited_str, data.env, 0);
 		expander(splited_str, env);
 		iter = *splited_str;
 		while (iter)
@@ -45,10 +45,10 @@ int	main(int argc, char *argv[], char **env)
 			printf("%s\n", iter->command);
 			iter = iter->next;
 		}
-		free(iter);
 		free(prompt);
+		free(iter);
 		free_list(splited_str);
 		prompt = readline("\033[1;31myciftci🥵minishell->\033[0m");
+		add_history(prompt);
 	}
 }
-
