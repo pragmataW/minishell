@@ -30,7 +30,9 @@ int	main(int argc, char *argv[], char **env)
 {
 	char	*prompt;
 	t_list	**splited_str;
-	t_list	*iter;
+	t_table	*iter;
+	t_table	**root;
+	int		i;
 
 	init_global(env);
 	prompt = readline("\033[1;31myciftci🥵minishell->\033[0m");
@@ -39,10 +41,19 @@ int	main(int argc, char *argv[], char **env)
 	{
 		splited_str = lexer(prompt, 0, 0, 0);
 		expander(splited_str, env);
-		iter = *splited_str;
+		root = fill_node(splited_str, 0);
+		iter = *root;
 		while (iter)
 		{
-			printf("%s\n", iter->command);
+			i = 0;
+			printf("cmd_path: %s\n", iter->cmd_path);
+			while (iter->full_cmd[i] != NULL)
+			{
+				printf("full_cmd[%d]: %s\n", i, iter->full_cmd[i]);
+				i++;
+			}
+			printf("infile: %d\n", iter->infile);
+			printf("outfile: %d\n", iter->outfile);
 			iter = iter->next;
 		}
 		free(prompt);

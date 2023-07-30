@@ -6,7 +6,7 @@
 /*   By: yciftci <yciftci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 12:38:08 by yciftci           #+#    #+#             */
-/*   Updated: 2023/07/05 21:48:59 by yciftci          ###   ########.fr       */
+/*   Updated: 2023/07/30 20:12:22 by yciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_list	*ft_lstnew(char *content)
 	ptr = (t_list *)malloc(sizeof(t_list));
 	if (!ptr)
 		return (NULL);
-	ptr->command = content;
+	ptr->command = ft_strdup(content);
 	ptr->next = NULL;
 	return (ptr);
 }
