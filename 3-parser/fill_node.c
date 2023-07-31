@@ -39,6 +39,7 @@ t_table	**fill_node(t_list **list, int i)
 		node->full_cmd[i] = NULL;
 		node->infile = 0;
 		node->outfile = 1;
+		node->next = NULL;
 		table_add_back(root, node);
 		if (iter)
 			iter = iter->next;

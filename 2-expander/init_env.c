@@ -8,7 +8,6 @@ t_env	*env_variables(char **env, int env_count)
 
 	while (env[env_count])
 		env_count++;
-
 	ret = malloc(sizeof(t_env));
 	ret->keys = malloc(sizeof(char *) * (env_count + 1));
 	ret->values = malloc(sizeof(char *) * (env_count + 1));

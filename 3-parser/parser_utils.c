@@ -31,3 +31,14 @@ t_table	*table_new(void)
 	ptr->next = NULL;
 	return (ptr);
 }
+
+char	*find_path(char *path, char *command)
+{
+	char	*ret;
+	char	*slash;
+
+	slash = ft_strjoin(path, "/");
+	ret = ft_strjoin(slash, command);
+	free(slash);
+	return (ret);
+}

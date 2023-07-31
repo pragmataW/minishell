@@ -65,7 +65,14 @@ void		expander(t_list **splitted_str, char **env);
 void		table_add_back(t_table **lst, t_table *new);
 t_table		*table_last(t_table *lst);
 t_table		*table_new(void);
+char		*find_path(char *path, char *command);
+//! EXPAND_CMD
+int			is_builtin(char *cmd);
+void		expand_cmd(t_table **table, t_env *env, int i);
+void		expand_binary(t_table *node);
 //! FILLNODE
 int			node_counter(t_list *list);
 t_table		**fill_node(t_list **list, int i);
+//! PARSER
+t_table		**parser(t_list **expanded_str);
 #endif

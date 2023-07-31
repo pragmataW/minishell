@@ -41,7 +41,7 @@ int	main(int argc, char *argv[], char **env)
 	{
 		splited_str = lexer(prompt, 0, 0, 0);
 		expander(splited_str, env);
-		root = fill_node(splited_str, 0);
+		root = parser(splited_str);
 		iter = *root;
 		while (iter)
 		{
