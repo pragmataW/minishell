@@ -75,4 +75,9 @@ int			node_counter(t_list *list);
 t_table		**fill_node(t_list **list, int i);
 //! PARSER
 t_table		**parser(t_list **expanded_str);
+//!EXECUTER
+void		executer(t_table **cmd_table, int i, int j);
+//! EXECUTER UTILS
+int			process_counter(t_table **cmd_table);
+int			**create_pipes(int process_count);
 #endif

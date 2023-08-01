@@ -42,22 +42,23 @@ int	main(int argc, char *argv[], char **env)
 		splited_str = lexer(prompt, 0, 0, 0);
 		expander(splited_str, env);
 		root = parser(splited_str);
-		iter = *root;
-		while (iter)
-		{
-			i = 0;
-			printf("cmd_path: %s\n", iter->cmd_path);
-			while (iter->full_cmd[i] != NULL)
-			{
-				printf("full_cmd[%d]: %s\n", i, iter->full_cmd[i]);
-				i++;
-			}
-			printf("infile: %d\n", iter->infile);
-			printf("outfile: %d\n", iter->outfile);
-			iter = iter->next;
-		}
-		free(prompt);
-		free(iter);
+        executer(root, 0, 0);
+		// iter = *root;
+		// while (iter)
+		// {
+		// 	i = 0;
+		// 	printf("cmd_path: %s\n", iter->cmd_path);
+		// 	while (iter->full_cmd[i] != NULL)
+		// 	{
+		// 		printf("full_cmd[%d]: %s\n", i, iter->full_cmd[i]);
+		// 		i++;
+		// 	}
+		// 	printf("infile: %d\n", iter->infile);
+		// 	printf("outfile: %d\n", iter->outfile);
+		// 	iter = iter->next;
+		// }
+		// free(prompt);
+		//free(iter);
 		free_list(splited_str);
 		prompt = readline("\033[1;31myciftci🥵minishell->\033[0m");
 		add_history(prompt);
