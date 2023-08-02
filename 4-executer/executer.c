@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-void	improved_exec(int i, int j, int pc, int **fd)
+static void	improved_exec(int i, int j, int pc, int **fd)
 {
 	int		id;
 	t_table	*iter;

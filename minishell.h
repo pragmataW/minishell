@@ -41,6 +41,7 @@ extern t_data	data;
 
 //! MAIN
 void		free_list(t_list **list, char *prompt);
+void		init_global(char **env);
 //! LEXER
 t_list		**lexer(char *prompt, int i, int j, int end);
 t_list		**trim_all(t_list **splited_str);
@@ -74,7 +75,6 @@ int			is_builtin(char *cmd);
 void		expand_cmd(t_table **table, t_env *env, int i);
 void		expand_binary(t_table *node);
 //! FILLNODE
-int			node_counter(t_list *list);
 t_table		**fill_node(t_list **list, int i);
 //! PARSER
 t_table		**parser(t_list **expanded_str);
@@ -89,4 +89,8 @@ void		dup_first(t_table *iter, int **fd);
 void		dup_last(t_table *iter, int **fd, int pc);
 void		dup_mids(t_table *iter, int **fd, int j);
 void		close_main_fd(int **fd, int j, int i, int pc);
+//! BUILT-IN
+int			ft_echo(char **args);
+int			ft_pwd(void);
+int			ft_env(void);
 #endif
