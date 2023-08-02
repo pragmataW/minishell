@@ -93,4 +93,6 @@ void		close_main_fd(int **fd, int j, int i, int pc);
 int			ft_echo(char **args);
 int			ft_pwd(void);
 int			ft_env(void);
+//! BUILT-IN EXECV
+void		builtin_execv(t_table *node);
 #endif

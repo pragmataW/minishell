@@ -2,7 +2,10 @@
 
 void	single_exec(t_table *iter)
 {
-	execve(iter->cmd_path, iter->full_cmd, NULL);
+	if (is_builtin(iter->cmd_path))
+		builtin_execv(iter);
+	else
+		execve(iter->cmd_path, iter->full_cmd, NULL);
 	exit(0);
 }
 
@@ -11,7 +14,10 @@ void	dup_first(t_table *iter, int **fd)
 	close(fd[0][0]);
 	dup2(fd[0][1], STDOUT_FILENO);
 	close(fd[0][1]);
-	execve(iter->cmd_path, iter->full_cmd, NULL);
+	if (is_builtin(iter->cmd_path))
+		builtin_execv(iter);
+	else
+		execve(iter->cmd_path, iter->full_cmd, NULL);
 	exit(0);
 }
 
@@ -20,7 +26,10 @@ void	dup_last(t_table *iter, int **fd, int pc)
 	close(fd[pc - 2][1]);
 	dup2(fd[pc - 2][0], STDIN_FILENO);
 	close(fd[pc - 2][0]);
-	execve(iter->cmd_path, iter->full_cmd, NULL);
+	if (is_builtin(iter->cmd_path))
+		builtin_execv(iter);
+	else
+		execve(iter->cmd_path, iter->full_cmd, NULL);
 	exit(0);
 }
 
@@ -32,7 +41,10 @@ void	dup_mids(t_table *iter, int **fd, int j)
 	close(fd[j + 1][0]);
 	dup2(fd[j + 1][1], STDOUT_FILENO);
 	close(fd[j + 1][1]);
-	execve(iter->cmd_path, iter->full_cmd, NULL);
+	if (is_builtin(iter->cmd_path))
+		builtin_execv(iter);
+	else
+		execve(iter->cmd_path, iter->full_cmd, NULL);
 	exit(0);
 }
 
