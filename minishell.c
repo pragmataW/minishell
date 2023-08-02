@@ -40,8 +40,8 @@ int	main(int argc, char *argv[], char **env)
 		splited_str = lexer(prompt, 0, 0, 0);
 		expander(splited_str, env);
 		parsed_str = parser(splited_str);
-		executer(parsed_str, 0, 0);
-		free_list(splited_str, prompt);
+		executer(parsed_str, 0, -1);
 		add_history(prompt);
+		free_list(splited_str, prompt);
 	}
 }

@@ -19,12 +19,6 @@ typedef struct s_env
 	char	*tilda;
 }			t_env;
 
-typedef struct s_data
-{
-	t_env	*env;
-	int		counter;
-}				t_data;
-
 typedef struct s_table
 {
 	char			*cmd_path;
@@ -33,6 +27,15 @@ typedef struct s_table
 	int				outfile;
 	struct s_table	*next;
 }				t_table;
+
+typedef struct s_data
+{
+	t_env			*env;
+	struct s_table	**cmd_table;
+	int				process_count;
+	int				counter;
+}				t_data;
+
 
 extern t_data	data;
 

@@ -1,16 +1,11 @@
 #include "../minishell.h"
 
-void	executer(t_table **cmd_table, int i, int j)
+void	improved_exec(int i, int j, int pc, int **fd)
 {
-	t_table	*iter;
-	int		pc;
-	int		**fd;
 	int		id;
+	t_table	*iter;
 
-	iter = *cmd_table;
-	pc = process_counter(cmd_table);
-	fd = create_pipes(pc);
-	j = -1;
+	iter = *data.cmd_table;
 	while (i < pc)
 	{
 		id = fork();
@@ -31,5 +26,13 @@ void	executer(t_table **cmd_table, int i, int j)
 	j++;
 	i++;
 	}
+}
+
+void	executer(t_table **cmd_table, int i, int j)
+{
+	int		**fd;
+
+	fd = create_pipes(data.process_count);
+	improved_exec(i, j, data.process_count, fd);
 }
 
