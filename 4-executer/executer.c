@@ -8,6 +8,8 @@ static void	improved_exec(int i, int j, int pc, int **fd)
 	iter = *data.cmd_table;
 	while (i < pc)
 	{
+		if (ft_strncmp(iter->cmd_path, "exit") == 0)
+			exit(0);
 		id = fork();
 		if (id == 0)
 		{
@@ -22,9 +24,7 @@ static void	improved_exec(int i, int j, int pc, int **fd)
 		}
 		wait(NULL);
 		iter = iter->next;
-		close_main_fd(fd, j, i, pc);
-	j++;
-	i++;
+		close_main_fd(fd, &j, &i, pc);
 	}
 }
 

@@ -88,11 +88,12 @@ void		single_exec(t_table *iter);
 void		dup_first(t_table *iter, int **fd);
 void		dup_last(t_table *iter, int **fd, int pc);
 void		dup_mids(t_table *iter, int **fd, int j);
-void		close_main_fd(int **fd, int j, int i, int pc);
+void		close_main_fd(int **fd, int *j, int *i, int pc);
 //! BUILT-IN
 int			ft_echo(char **args);
 int			ft_pwd(void);
 int			ft_env(void);
+int			ft_exit(char **args);
 //! BUILT-IN EXECV
 void		builtin_execv(t_table *node);
 #endif

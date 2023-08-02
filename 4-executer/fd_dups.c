@@ -48,15 +48,17 @@ void	dup_mids(t_table *iter, int **fd, int j)
 	exit(0);
 }
 
-void	close_main_fd(int **fd, int j, int i, int pc)
+void	close_main_fd(int **fd, int *j, int *i, int pc)
 {
-	if (i == 0)
+	if (*i == 0)
 		close(fd[0][1]);
-	else if (i == pc - 1)
+	else if (*i == pc - 1)
 		close(fd[pc - 2][0]);
 	else
 	{
-		close(fd[j][0]);
-		close(fd[j + 1][1]);
+		close(fd[*j][0]);
+		close(fd[*j + 1][1]);
 	}
+	*j = *j + 1;
+	*i = *i + 1;
 }
