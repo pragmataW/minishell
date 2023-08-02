@@ -37,7 +37,7 @@ typedef struct s_table
 extern t_data	data;
 
 //! MAIN
-void		free_list(t_list **list);
+void		free_list(t_list **list, char *prompt);
 //! LEXER
 t_list		**lexer(char *prompt, int i, int j, int end);
 t_list		**trim_all(t_list **splited_str);
@@ -80,4 +80,10 @@ void		executer(t_table **cmd_table, int i, int j);
 //! EXECUTER UTILS
 int			process_counter(t_table **cmd_table);
 int			**create_pipes(int process_count);
+//! FD_DUPS
+void		single_exec(t_table *iter);
+void		dup_first(t_table *iter, int **fd);
+void		dup_last(t_table *iter, int **fd, int pc);
+void		dup_mids(t_table *iter, int **fd, int j);
+void		close_main_fd(int **fd, int j, int i, int pc);
 #endif
