@@ -10,6 +10,11 @@ static void	main_builtin(t_table *iter)
 		ft_export(iter->full_cmd);
 	else if (ft_strncmp(iter->cmd_path, "cd") == 0)
 		ft_cd(iter->full_cmd);
+	else if (ft_strncmp(iter->cmd_path, "clr") == 0)
+	{
+		printf(CLEAR_TERM);
+		printf(RESET_CURSOR);
+	}
 }
 
 static void	improved_exec(int i, int j, int pc, int **fd)

@@ -12,6 +12,12 @@
 # include <sys/wait.h>
 # include "libft/libft.h"
 
+# define T "🥵minishell\033[38;2;243;222;186m⤵\033[0m\n[\033[0m\033[38;2;243;222;186m"
+# define RED "\033[1;31m"
+# define LAST_TXT "\033[0m\033[1;31m]->\033[0m"
+# define CLEAR_TERM "\x1b[2J"
+# define RESET_CURSOR "\x1b[H"
+
 typedef struct s_env
 {
 	char	**keys;
@@ -39,9 +45,11 @@ typedef struct s_data
 
 extern t_data	data;
 
-//! MAIN
+//! MINISHELL
 void		free_list(t_list **list, char *prompt);
 void		init_global(char **env);
+//!MINISHELL UTILS
+char		*get_input(void);
 //! LEXER
 t_list		**lexer(char *prompt, int i, int j, int end);
 t_list		**trim_all(t_list **splited_str);

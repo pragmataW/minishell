@@ -36,7 +36,7 @@ int	main(int argc, char *argv[], char **env)
 	init_global(env);
 	while (1)
 	{
-		prompt = readline("\033[1;31myciftci🥵minishell->\033[0m");
+		prompt = get_input();
 		splited_str = lexer(prompt, 0, 0, 0);
 		expander(splited_str);
 		parsed_str = parser(splited_str);
