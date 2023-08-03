@@ -51,7 +51,6 @@ t_list	**trim_all(t_list **splited_str)
 {
 	t_list	**ret;
 	t_list	*iter;
-	char	*tmp;
 
 	ret = malloc(sizeof(t_list *));
 	*ret = NULL;

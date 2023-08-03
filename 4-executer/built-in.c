@@ -81,7 +81,6 @@ int	ft_unset(char **args, int i)
 int	ft_export(char **args)
 {
 	int		i;
-	int		index;
 	char	**key_value;
 
 	i = 1;

@@ -6,7 +6,7 @@
 /*   By: yciftci <yciftci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 07:15:26 by yciftci           #+#    #+#             */
-/*   Updated: 2023/07/30 22:20:31 by yciftci          ###   ########.fr       */
+/*   Updated: 2023/08/04 02:15:54 by yciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_strncmp(const char *s1, const char *s2)
 	size_t	n;
 
 	n = ft_strlen(s1);
+	if ((s1 == NULL) || (s2 == NULL))
+		return (-1);
 	if (ft_strlen(s2) > ft_strlen(s1))
 		n = ft_strlen(s2);
 	if (n == 0)

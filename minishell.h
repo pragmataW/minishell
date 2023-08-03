@@ -12,7 +12,7 @@
 # include <sys/wait.h>
 # include "libft/libft.h"
 
-# define T "🥵minishell\033[38;2;243;222;186m⤵"
+# define T "🥵minishell\033[38;2;243;222;186m⤵\033[0m\033[0m\033[38;2;243;222;186m"
 # define PWD_COLOR "\033[0m\n\033[1;31m[\033[0m\033[38;2;243;222;186m"
 # define RED "\033[1;31m"
 # define LAST_TXT "\033[0m\033[1;31m]->\033[0m"
@@ -85,6 +85,11 @@ void		expand_cmd(t_table **table, int i);
 void		expand_binary(t_table *node);
 //! FILLNODE
 t_table		**fill_node(t_list **list, int i);
+//! FIND_REDIREC
+void		find_redirec(t_table **root);
+//! FIND_REDIREC_UTILS
+char		*find_file(char **arg);
+int			redirec_size(char **arg);
 //! PARSER
 t_table		**parser(t_list **expanded_str);
 //!EXECUTER

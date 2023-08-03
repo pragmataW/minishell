@@ -22,7 +22,6 @@ void	export_value(char *add)
 
 void	delete_value(char *delete)
 {
-	int		i;
 	int		index;
 	char	*tmp;
 

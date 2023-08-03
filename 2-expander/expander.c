@@ -3,7 +3,6 @@
 static void	expand_tilda(t_list **splitted_str, int i, int k)
 {
 	char	*new_str;
-	char	c;
 	t_list	*iter;
 
 	iter = *splitted_str;
