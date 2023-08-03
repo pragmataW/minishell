@@ -59,12 +59,12 @@ void		expand_single_quote(t_list *iter, int *i, char *new_str, int *j);
 void		expand_dollar(t_list *iter, int *i, char *new_str, int *j);
 void		tilda_extra(t_list *iter, int *i, char *new_str, int *k);
 //! EXPANDER UTILS EXTRA
-char		*find_values(t_env *env, char *kw);
+char		*find_values(t_env *env, char *kw, int *index);
 char		*ft_str_realloc(char *str);
 void		expand_normal(t_list *iter, int *i, char *new_str, int *j);
 void		new_command(t_list *iter, char *str);
 //! EXPANDER
-void		expander(t_list **splitted_str, char **env);
+void		expander(t_list **splitted_str);
 //! PARSER UTILS
 void		table_add_back(t_table **lst, t_table *new);
 t_table		*table_last(t_table *lst);
@@ -72,7 +72,7 @@ t_table		*table_new(void);
 char		*find_path(char *path, char *command);
 //! EXPAND_CMD
 int			is_builtin(char *cmd);
-void		expand_cmd(t_table **table, t_env *env, int i);
+void		expand_cmd(t_table **table, int i);
 void		expand_binary(t_table *node);
 //! FILLNODE
 t_table		**fill_node(t_list **list, int i);
@@ -94,6 +94,11 @@ int			ft_echo(char **args);
 int			ft_pwd(void);
 int			ft_env(void);
 int			ft_exit(char **args);
+int         ft_unset(char **args, int i);
 //! BUILT-IN EXECV
 void		builtin_execv(t_table *node);
+//! BUILT-IN UTILS
+int			matrix_size(char **matrix);
+char		**resize_matrix(char	**matrix);
+void		free_matrix(char **matrix);
 #endif

@@ -1,4 +1,4 @@
-#include "../minishell.h"
+	#include "../minishell.h"
 
 void	single_exec(t_table *iter)
 {

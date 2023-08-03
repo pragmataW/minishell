@@ -48,11 +48,8 @@ static void	expand_var(t_list **splitted_str, int i, int j)
 	}
 }
 
-void	expander(t_list **splitted_str, char **env)
+void	expander(t_list **splitted_str)
 {
-	t_env	*envs;
-
-	envs = env_variables(env, 0);
 	expand_tilda(splitted_str, 0, 0);
 	expand_var(splitted_str, 0, 0);
 }

@@ -45,7 +45,7 @@ void	expand_dollar(t_list *it, int *i, char *new_str, int *j)
 			*i = *i + 1;
 	}
 	env_key[data.counter] = '\0';
-	env_var = find_values(data.env, env_key);
+	env_var = find_values(data.env, env_key, NULL);
 	if (env_var != NULL)
 	{
 		data.counter = 0;

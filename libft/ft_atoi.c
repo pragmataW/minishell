@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yciftci < yciftci@student.42kocaeli.com    +#+  +:+       +#+        */
+/*   By: yciftci <yciftci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:46:34 by yciftci           #+#    #+#             */
-/*   Updated: 2022/10/18 02:07:55 by yciftci          ###   ########.fr       */
+/*   Updated: 2023/08/03 01:37:40 by yciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "limits.h"
 
-static int	ft_isspace(char c)
+int	ft_isspace(char c)
 {
 	if ((c >= 9 && c <= 13) || c == ' ')
 		return (1);

@@ -1,13 +1,13 @@
 #include "../minishell.h"
 
-void	expand_cmd(t_table **table, t_env *env, int i)
+void	expand_cmd(t_table **table, int i)
 {
 	t_table	*iter;
 	char	**paths;
 	char	*new_path;
 
 	iter = *table;
-	paths = ft_split(find_values(env, "PATH"), ':');
+	paths = ft_split(find_values(data.env, "PATH", NULL), ':');
 	while (iter)
 	{
 		i = 0;

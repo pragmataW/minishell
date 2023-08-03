@@ -8,4 +8,6 @@ void	builtin_execv(t_table *node)
 		ft_pwd();
 	else if (ft_strncmp(node->cmd_path, "env") == 0)
 		ft_env();
+	else if (ft_strncmp(node->cmd_path, "unset") == 0)
+		ft_unset(node->full_cmd, 1);
 }

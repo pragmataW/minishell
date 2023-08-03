@@ -23,6 +23,6 @@ t_env	*env_variables(char **env, int env_count)
 		allocator(ret->values[i], &(env[i][s_i + 1]), ft_strlen(env[i]) - s_i);
 		i++;
 	}
-	ret->tilda = find_values(ret, "HOME");
+	ret->tilda = find_values(ret, "HOME", NULL);
 	return (ret);
 }

@@ -38,7 +38,7 @@ int	main(int argc, char *argv[], char **env)
 	{
 		prompt = readline("\033[1;31myciftci🥵minishell->\033[0m");
 		splited_str = lexer(prompt, 0, 0, 0);
-		expander(splited_str, env);
+		expander(splited_str);
 		parsed_str = parser(splited_str);
 		executer(parsed_str, 0, -1);
 		add_history(prompt);

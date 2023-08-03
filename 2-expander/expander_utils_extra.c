@@ -17,7 +17,7 @@ void	new_command(t_list *iter, char *str)
 	iter->command[i] = '\0';
 }
 
-char	*find_values(t_env *env, char *kw)
+char	*find_values(t_env *env, char *kw, int *index)
 {
 	int	i;
 
@@ -25,9 +25,15 @@ char	*find_values(t_env *env, char *kw)
 	while (env->keys[i] != NULL)
 	{
 		if (ft_strncmp(env->keys[i], kw) == 0)
+		{
+			if (index != NULL)
+				*index = i;
 			return (ft_strdup(env->values[i]));
+		}
 		i++;
 	}
+	if (index != NULL)
+		*index = -1;
 	return (NULL);
 }
 
