@@ -75,7 +75,7 @@ void	free_matrix(char **matrix)
 	free(matrix);
 }
 
-void	export_keywords(char *add, char **args, int i)
+void	export_keywords(char *add, int i)
 {
 	char	**ret;
 	int		size;
@@ -86,7 +86,7 @@ void	export_keywords(char *add, char **args, int i)
 	tmp = find_values(data.env, add, NULL);
 	if (tmp)
 	{
-		ft_unset(args, 1);
+		delete_value(add);
 		free(tmp);
 	}
 	while (data.env->keys[i])

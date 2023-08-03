@@ -63,7 +63,10 @@ int	ft_unset(char **args, int i)
 		if (tmp)
 			free(tmp);
 		else
-			return (127);
+		{
+			i++;
+			continue ;
+		}
 		free(data.env->keys[index]);
 		data.env->keys[index] = ft_strdup(" ");
 		free(data.env->values[index]);
@@ -90,7 +93,7 @@ int	ft_export(char **args)
 			continue ;
 		}
 		key_value = ft_split(args[i], '=');
-		export_keywords(key_value[0], args, 0);
+		export_keywords(key_value[0], 0);
 		export_value(key_value[1]);
 		free_matrix(key_value);
 		i++;

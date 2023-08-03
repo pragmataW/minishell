@@ -95,6 +95,8 @@ int			ft_pwd(void);
 int			ft_env(void);
 int			ft_unset(char **args, int i);
 int			ft_export(char **args);
+//! BUILD-IN2
+int			ft_cd(char **args);
 //! BUILT-IN EXECV
 void		builtin_execv(t_table *node);
 //! BUILT-IN UTILS
@@ -102,7 +104,9 @@ int			is_exportable(char *var);
 int			matrix_size(char **matrix);
 char		**resize_matrix(char	**matrix);
 void		free_matrix(char **matrix);
-void		export_keywords(char *add, char **args, int i);
+void		export_keywords(char *add, int i);
 //! BUILT-IN UTILS2
 void		export_value(char *add);
+void		delete_value(char *delete);
+void		set_value(char *add, char *value);
 #endif
