@@ -12,7 +12,8 @@
 # include <sys/wait.h>
 # include "libft/libft.h"
 
-# define T "🥵minishell\033[38;2;243;222;186m⤵\033[0m\n[\033[0m\033[38;2;243;222;186m"
+# define T "🥵minishell\033[38;2;243;222;186m⤵"
+# define PWD_COLOR "\033[0m\n\033[1;31m[\033[0m\033[38;2;243;222;186m"
 # define RED "\033[1;31m"
 # define LAST_TXT "\033[0m\033[1;31m]->\033[0m"
 # define CLEAR_TERM "\x1b[2J"

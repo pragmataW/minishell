@@ -22,18 +22,19 @@ static char	*get_fullstr(void)
 	char	*pwd;
 	char	*ret;
 	char	*tmp;
-
+	char	*txt = ft_strjoin(T, PWD_COLOR);
 	uname = get_uname();
 	pwd = get_pwd();
 	ret = ft_strjoin(RED, uname);
 	tmp = ft_strdup(ret);
 	free(ret);
-	ret = ft_strjoin(tmp, T);
+	ret = ft_strjoin(tmp, txt);
 	free(tmp);
 	tmp = ft_strjoin(ret, pwd);
 	free(ret);
 	ret = ft_strjoin(tmp, LAST_TXT);
 	free(tmp);
+	free(txt);
 	return (ret);
 }
 

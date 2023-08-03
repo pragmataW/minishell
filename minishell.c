@@ -34,6 +34,8 @@ int	main(int argc, char *argv[], char **env)
 	t_table	**parsed_str;
 
 	init_global(env);
+	printf(CLEAR_TERM);
+	printf(RESET_CURSOR);
 	while (1)
 	{
 		prompt = get_input();
