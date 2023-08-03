@@ -20,3 +20,9 @@ re: fclean all
 
 norm:
 	norminette
+
+git:
+	make fclean
+	git add .
+	git commit -m "unfinished yet"
+	git push
