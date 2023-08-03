@@ -10,6 +10,10 @@ static void	improved_exec(int i, int j, int pc, int **fd)
 	{
 		if (ft_strncmp(iter->cmd_path, "exit") == 0)
 			exit(0);
+		else if (ft_strncmp(iter->cmd_path, "unset") == 0)
+			ft_unset(iter->full_cmd, 1);
+		else if (ft_strncmp(iter->cmd_path, "export") == 0)
+			ft_export(iter->full_cmd);
 		id = fork();
 		if (id == 0)
 		{

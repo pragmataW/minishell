@@ -74,3 +74,28 @@ void	free_matrix(char **matrix)
 	}
 	free(matrix);
 }
+
+void	export_keywords(char *add, char **args, int i)
+{
+	char	**ret;
+	int		size;
+	char	*tmp;
+
+	size = matrix_size(data.env->keys);
+	ret = malloc(sizeof(char *) * (size + 2));
+	tmp = find_values(data.env, add, NULL);
+	if (tmp)
+	{
+		ft_unset(args, 1);
+		free(tmp);
+	}
+	while (data.env->keys[i])
+	{
+		ret[i] = ft_strdup(data.env->keys[i]);
+		i++;
+	}
+	ret[i] = ft_strdup(add);
+	ret[++i] = NULL;
+	free_matrix(data.env->keys);
+	data.env->keys = ret;
+}

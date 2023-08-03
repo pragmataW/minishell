@@ -64,33 +64,36 @@ int	ft_unset(char **args, int i)
 			free(tmp);
 		else
 			return (127);
-		printf("keys: %s\n", data.env->keys[index]);
-		printf("values: %s\n", data.env->values[index]);
 		free(data.env->keys[index]);
 		data.env->keys[index] = ft_strdup(" ");
 		free(data.env->values[index]);
 		data.env->values[index] = ft_strdup(" ");
-		printf("keys: %s\n", data.env->keys[index]);
-		printf("values: %s\n", data.env->values[index]);
 		data.env->keys = resize_matrix(data.env->keys);
 		data.env->values = resize_matrix(data.env->values);
 		i++;
-		ft_printf("keys: %s\n", data.env->keys[index]); // FONKSİYONUN İÇİNDE DOĞRU, DIŞINA ÇIKINCA ESKİSİ GİBİ YANİ SANIRIM
 	}
 	return (0);
 }
 
-// int	ft_export(char **args)
-// {
-// 	int	i;
+int	ft_export(char **args)
+{
+	int		i;
+	int		index;
+	char	**key_value;
 
-// 	i = 1;
-// 	while (args[i])
-// 	{
-// 		if (!is_exportable(args[i]))
-// 			return (127);
-// 		export_keyword(args[i]);
-// 		export_value(args[i]);
-// 	}
-// 	return (0);
-// }
+	i = 1;
+	while (args[i])
+	{
+		if (!is_exportable(args[i]))
+		{
+			i++;
+			continue ;
+		}
+		key_value = ft_split(args[i], '=');
+		export_keywords(key_value[0], args, 0);
+		export_value(key_value[1]);
+		free_matrix(key_value);
+		i++;
+	}
+	return (0);
+}

@@ -93,12 +93,16 @@ void		close_main_fd(int **fd, int *j, int *i, int pc);
 int			ft_echo(char **args);
 int			ft_pwd(void);
 int			ft_env(void);
-int			ft_exit(char **args);
-int         ft_unset(char **args, int i);
+int			ft_unset(char **args, int i);
+int			ft_export(char **args);
 //! BUILT-IN EXECV
 void		builtin_execv(t_table *node);
 //! BUILT-IN UTILS
+int			is_exportable(char *var);
 int			matrix_size(char **matrix);
 char		**resize_matrix(char	**matrix);
 void		free_matrix(char **matrix);
+void		export_keywords(char *add, char **args, int i);
+//! BUILT-IN UTILS2
+void		export_value(char *add);
 #endif
