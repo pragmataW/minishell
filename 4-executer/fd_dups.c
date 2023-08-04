@@ -4,6 +4,8 @@ void	single_exec(t_table *iter)
 {
 	if (iter->outfile != 1)
 		dup2(iter->outfile, STDOUT_FILENO);
+	if (iter->infile != 0)
+		dup2(iter->infile, STDIN_FILENO);
 	if (is_builtin(iter->cmd_path))
 		builtin_execv(iter);
 	else
@@ -32,6 +34,8 @@ void	dup_last(t_table *iter, int **fd, int pc)
 {
 	if (iter->outfile != 1)
 		dup2(iter->outfile, STDOUT_FILENO);
+	if (iter->infile != 0)
+		dup2(iter->infile, STDIN_FILENO);
 	else
 	{
 		close(fd[pc - 2][1]);
@@ -47,9 +51,14 @@ void	dup_last(t_table *iter, int **fd, int pc)
 
 void	dup_mids(t_table *iter, int **fd, int j)
 {
-	close(fd[j][1]);
-	dup2(fd[j][0], STDIN_FILENO);
-	close(fd[j][0]);
+	if (iter->infile != 0)
+		dup2(iter->infile, STDIN_FILENO);
+	else
+	{
+		close(fd[j][1]);
+		dup2(fd[j][0], STDIN_FILENO);
+		close(fd[j][0]);
+	}
 	if (iter->outfile != 1)
 		dup2(iter->outfile, STDOUT_FILENO);
 	else

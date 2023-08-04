@@ -89,7 +89,7 @@ t_table		**fill_node(t_list **list, int i);
 void		find_redirec(t_table **root);
 //! FIND_REDIREC_UTILS
 void		terminate_command(t_table *iter);
-void		set_fd(t_table *iter, int i, int fd);
+void		set_fd(t_table *iter, int i, int fd, char opt);
 //! PARSER
 t_table		**parser(t_list **expanded_str);
 //!EXECUTER

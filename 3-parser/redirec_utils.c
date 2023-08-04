@@ -14,9 +14,12 @@ void	terminate_command(t_table *iter)
 	}
 }
 
-void	set_fd(t_table *iter, int i, int fd)
+void	set_fd(t_table *iter, int i, int fd, char opt)
 {
-	iter->outfile = fd;
+	if (opt == 'i')
+		iter->infile = fd;
+	else if (opt == 'o')
+		iter->outfile = fd;
 	free(iter->full_cmd[i]);
 	iter->full_cmd[i] = NULL;
 	free(iter->full_cmd[i + 1]);
