@@ -53,19 +53,14 @@ void	get_heredoc(int fd, char *input)
 	id = fork();
 	if (id == 0)
 	{
-		line = readline("\033[1;31m<< \033[0m ");
-		ft_printf("line %s", line);
-		ft_printf("input %s", input);
-		while (!ft_strncmp(line, input))
+		while (1)
 		{
-			free(line);
 			line = readline("\033[1;31m<< \033[0m ");
 			if (!ft_strncmp(line, input))
 			{
-				ft_printf("d");
 				close(fd);
 				free(line);
-				continue ;
+				exit(0);
 			}
 			write(fd, line, ft_strlen(line));
 			write(fd, "\n", 1);
