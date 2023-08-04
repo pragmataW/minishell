@@ -52,6 +52,7 @@ int	main(int argc, char *argv[], char **env)
 		free(last_status);
 		add_history(prompt);
 		free_list(splited_str, prompt);
+		command_not_found();
 		data.heredoc = 0;
 	}
 }

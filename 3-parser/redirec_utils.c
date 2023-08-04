@@ -50,12 +50,10 @@ char	*open_path(void)
 	return (ret);
 }
 
-int	get_heredoc(int fd, char *input, int id)
+void	get_heredoc(int fd, char *input, int id)
 {
 	char	*line;
-	char	*path;
 
-	path = open_path();
 	line = NULL;
 	data.heredoc = 1;
 	id = fork();
@@ -68,7 +66,7 @@ int	get_heredoc(int fd, char *input, int id)
 			if (!ft_strncmp(line, input))
 			{
 				free(line);
-				return (open(path, O_RDONLY, 0644));
+				exit (0);
 			}
 			write(fd, line, ft_strlen(line));
 			write(fd, "\n", 1);
@@ -76,6 +74,5 @@ int	get_heredoc(int fd, char *input, int id)
 		}
 	}
 	else
-		wait(NULL);
-	return (-1);
+		wait(&data.heredoc);
 }

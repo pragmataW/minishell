@@ -16,8 +16,15 @@ void	heredoc_sig(int sig)
 		exit(0);
 }
 
+void	segfault_handler(int sig)
+{
+	if (sig == SIGSEGV)
+		exit(0);
+}
+
 void	signals_control(void)
 {
 	signal(SIGINT, handle_sigint);
+	signal(SIGSEGV, segfault_handler);
 	signal(SIGQUIT, SIG_IGN);
 }
