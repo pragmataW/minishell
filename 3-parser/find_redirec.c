@@ -10,19 +10,19 @@ static void	create_redirec(t_table *iter, int i, int fd)
 		{
 			if (!iter->full_cmd[i + 1])
 			{
+				terminate_command(iter);
 				printf("minishell: parse error no file\n");
 				return ;
 			}
 			if (iter->full_cmd[i + 2])
 			{
+				terminate_command(iter);
 				printf("minishell: parse error too many arguments\n");
 				return ;
 			}
 			file_name = iter->full_cmd[i + 1];
 			fd = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-			iter->outfile = fd;
-			iter->full_cmd[i] = NULL;
-			iter->full_cmd[i + 1] = NULL;
+			set_fd(iter, i, fd);
 			break ;
 		}
 		i++;
@@ -39,19 +39,19 @@ static void	append_redirec(t_table *iter, int i, int fd)
 		{
 			if (!iter->full_cmd[i + 1])
 			{
+				terminate_command(iter);
 				printf("minishell: parse error no file\n");
 				return ;
 			}
 			if (iter->full_cmd[i + 2])
 			{
+				terminate_command(iter);
 				printf("minishell: parse error too many arguments\n");
 				return ;
 			}
 			file_name = iter->full_cmd[i + 1];
 			fd = open(file_name, O_CREAT | O_WRONLY | O_APPEND, 0644);
-			iter->outfile = fd;
-			iter->full_cmd[i] = NULL;
-			iter->full_cmd[i + 1] = NULL;
+			set_fd(iter, i, fd);
 			break ;
 		}
 		i++;
