@@ -16,6 +16,12 @@ void	terminate_command(t_table *iter)
 
 void	set_fd(t_table *iter, int i, int fd, char opt)
 {
+	if (fd == -1)
+	{
+		printf("minishell: no such file or directory\n");
+		terminate_command(iter);
+		return ;
+	}
 	if (opt == 'i')
 		iter->infile = fd;
 	else if (opt == 'o')
