@@ -25,3 +25,54 @@ void	set_fd(t_table *iter, int i, int fd, char opt)
 	free(iter->full_cmd[i + 1]);
 	iter->full_cmd[i + 1] = NULL;
 }
+
+void	set_heredoc_fd(t_table *iter, int i, int fd)
+{
+	iter->infile = fd;
+	free(iter->full_cmd[i]);
+	iter->full_cmd[i] = NULL;
+}
+
+char	*open_path(void)
+{
+	char	*path;
+	char	*ret;
+
+	path = getcwd(NULL, 0);
+	ret = ft_strjoin(path, "/.minishell_tmp");
+	free(path);
+	return (ret);
+}
+
+void	get_heredoc(int fd, char *input)
+{
+	char	*line;
+	int		id;
+
+	line = NULL;
+	id = fork();
+	if (id == 0)
+	{
+		line = readline("\033[1;31m<< \033[0m ");
+		ft_printf("line %s", line);
+		ft_printf("input %s", input);
+		while (!ft_strncmp(line, input))
+		{
+			free(line);
+			line = readline("\033[1;31m<< \033[0m ");
+			if (!ft_strncmp(line, input))
+			{
+				ft_printf("d");
+				close(fd);
+				free(line);
+				continue ;
+			}
+			write(fd, line, ft_strlen(line));
+			write(fd, "\n", 1);
+			free(line);
+		}
+		close(fd);
+	}
+	else
+		wait(NULL);
+}

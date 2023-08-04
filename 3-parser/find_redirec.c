@@ -58,13 +58,10 @@ static void	append_redirec(t_table *iter, int i, int fd)
 	}
 }
 
-static void	infile_redirec(t_table *iter)
+static void	infile_redirec(t_table *iter, int i, int fd)
 {
-	int		i;
-	int		fd;
 	char	*file_name;
 
-	i = 0;
 	while (iter->full_cmd[i])
 	{
 		if (!ft_strncmp(iter->full_cmd[i], "<"))
@@ -90,6 +87,37 @@ static void	infile_redirec(t_table *iter)
 	}
 }
 
+static void	heredoc_redirec(t_table *iter, int i, int id, int fd)
+{
+	char	*path;
+
+	while (iter->full_cmd[i])
+	{
+		if (!ft_strncmp(iter->full_cmd[i], "<<"))
+		{
+			if (!iter->full_cmd[i + 1])
+			{
+				terminate_command(iter);
+				printf("minishell: parse error no file\n");
+				return ;
+			}
+			if (iter->full_cmd[i + 2])
+			{
+				terminate_command(iter);
+				printf("minishell: parse error too many arguments\n");
+				return ;
+			}
+		}
+		path = open_path();
+		fd = open (path, O_CREAT | O_RDWR, 777);
+		if (fd == -1)
+			fd = open (path, O_RDWR, 777);
+		get_heredoc(fd, iter->full_cmd[i + 1]);
+		set_heredoc_fd(iter, i, fd);
+		i++;
+	}
+}
+
 void	find_redirec(t_table **root)
 {
 	t_table	*iter;
@@ -102,14 +130,15 @@ void	find_redirec(t_table **root)
 		i = 0;
 		while (iter->full_cmd[i])
 		{
-
 			cmd_size = ft_strlen(iter->full_cmd[i]);
 			if (!ft_strncmp(iter->full_cmd[i], ">") && cmd_size == 1)
 				create_redirec(iter, 0, 0);
 			if (!ft_strncmp(iter->full_cmd[i], ">>") && cmd_size == 2)
 				append_redirec(iter, 0, 0);
 			if (!ft_strncmp(iter->full_cmd[i], "<") && cmd_size == 1)
-				infile_redirec(iter);
+				infile_redirec(iter, 0, 0);
+			if (!ft_strncmp(iter->full_cmd[i], "<<") && cmd_size == 2)
+				heredoc_redirec(iter, 0, 0, 0);
 			i++;
 		}
 		iter = iter->next;

