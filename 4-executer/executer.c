@@ -4,6 +4,7 @@ static int	main_builtin(t_table *iter)
 {
 	int	status;
 
+	status = -1;
 	if (ft_strncmp(iter->cmd_path, "exit") == 0)
 		exit(0);
 	else if (ft_strncmp(iter->cmd_path, "unset") == 0)
@@ -14,11 +15,18 @@ static int	main_builtin(t_table *iter)
 		status = ft_cd(iter->full_cmd);
 	else if (ft_strncmp(iter->cmd_path, "clr") == 0)
 	{
+		status = 0;
 		printf(CLEAR_TERM);
 		printf(RESET_CURSOR);
-		status = 0;
 	}
 	return (status);
+}
+
+static void	exit_status(int status)
+{
+	wait(&data.status);
+	if (WIFEXITED(data.status))
+		data.status = WEXITSTATUS(data.status);
 }
 
 static void	improved_exec(int i, int j, int pc, int **fd)
@@ -29,6 +37,9 @@ static void	improved_exec(int i, int j, int pc, int **fd)
 	iter = *data.cmd_table;
 	while (i < pc && data.heredoc == 0)
 	{
+		data.status = main_builtin(iter);
+		if (data.status != -1)
+			return ;
 		id = fork();
 		if (id == 0)
 		{
@@ -41,10 +52,7 @@ static void	improved_exec(int i, int j, int pc, int **fd)
 			else
 				dup_mids(iter, fd, j);
 		}
-		data.status = main_builtin(iter);
-		wait(&data.status);
-		if (WIFEXITED(data.status))
-			data.status = WEXITSTATUS(data.status);
+		exit_status(data.status);
 		iter = iter->next;
 		close_main_fd(fd, &j, &i, pc);
 	}
@@ -60,4 +68,3 @@ void	executer(int i, int j)
 	improved_exec(i, j, data.process_count, fd);
 	unlink(path);
 }
-
