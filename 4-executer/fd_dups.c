@@ -15,6 +15,8 @@ void	single_exec(t_table *iter)
 
 void	dup_first(t_table *iter, int **fd)
 {
+	if (iter->infile != 0)
+		dup2(iter->infile, STDIN_FILENO);
 	if (iter->outfile != 1)
 		dup2(iter->outfile, STDOUT_FILENO);
 	else
