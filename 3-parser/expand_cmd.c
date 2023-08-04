@@ -8,7 +8,7 @@ void	expand_cmd(t_table **table, int i)
 
 	iter = *table;
 	paths = ft_split(find_values(data.env, "PATH", NULL), ':');
-	while (iter)
+	while (iter && paths)
 	{
 		i = 0;
 		if (!is_builtin(iter->cmd_path))
