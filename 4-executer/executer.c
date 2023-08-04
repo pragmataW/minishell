@@ -59,10 +59,6 @@ void	executer(t_table **cmd_table, int i, int j)
 	argv[3] = NULL;
 	fd = create_pipes(data.process_count);
 	improved_exec(i, j, data.process_count, fd);
-	id = fork();
-	if (id == 0)
-		execve("/usr/bin/rm", argv, NULL);
-	else
-		wait(NULL);
+	unlink(path);
 }
 

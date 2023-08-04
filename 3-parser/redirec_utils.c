@@ -39,18 +39,20 @@ char	*open_path(void)
 	char	*ret;
 
 	path = getcwd(NULL, 0);
-	ret = ft_strjoin(path, "/.minishell_tmp");
+	ret = ft_strjoin(path, "/minishell_tmp");
 	free(path);
 	return (ret);
 }
 
-void	get_heredoc(int fd, char *input)
+int	get_heredoc(int fd, char *input)
 {
 	char	*line;
+	char	*tmp;
 	int		id;
 
 	line = NULL;
 	id = fork();
+	tmp = open_path();
 	if (id == 0)
 	{
 		while (1)
@@ -58,9 +60,8 @@ void	get_heredoc(int fd, char *input)
 			line = readline("\033[1;31m<< \033[0m ");
 			if (!ft_strncmp(line, input))
 			{
-				close(fd);
 				free(line);
-				exit(0);
+				return (open(tmp, O_RDONLY, 0644));
 			}
 			write(fd, line, ft_strlen(line));
 			write(fd, "\n", 1);

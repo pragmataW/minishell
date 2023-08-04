@@ -91,7 +91,7 @@ void		find_redirec(t_table **root);
 void		terminate_command(t_table *iter);
 void		set_fd(t_table *iter, int i, int fd, char opt);
 char		*open_path(void);
-void		get_heredoc(int fd, char *input);
+int			get_heredoc(int fd, char *input);
 void		set_heredoc_fd(t_table *iter, int i, int fd);
 //! PARSER
 t_table		**parser(t_list **expanded_str);

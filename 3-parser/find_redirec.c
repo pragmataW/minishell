@@ -79,7 +79,7 @@ static void	infile_redirec(t_table *iter, int i, int fd)
 				return ;
 			}
 			file_name = iter->full_cmd[i + 1];
-			fd = open(file_name, O_RDONLY);
+			fd = open(file_name, O_RDONLY, 0644);
 			set_fd(iter, i, fd, 'i');
 			break ;
 		}
@@ -98,7 +98,7 @@ static void	heredoc_redirec(t_table *iter, int i, int id, int fd)
 			if (!iter->full_cmd[i + 1])
 			{
 				terminate_command(iter);
-				printf("minishell: parse error no file\n");
+				printf("minishell: parse error no input\n");
 				return ;
 			}
 			if (iter->full_cmd[i + 2])
@@ -107,13 +107,11 @@ static void	heredoc_redirec(t_table *iter, int i, int id, int fd)
 				printf("minishell: parse error too many arguments\n");
 				return ;
 			}
+			path = open_path();
+			fd = open(path, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+			fd = get_heredoc(fd, iter->full_cmd[i + 1]);
+			set_heredoc_fd(iter, i, fd);
 		}
-		path = open_path();
-		fd = open (path, O_CREAT | O_RDWR, 777);
-		if (fd == -1)
-			fd = open (path, O_RDWR, 777);
-		get_heredoc(fd, iter->full_cmd[i + 1]);
-		set_heredoc_fd(iter, i, fd);
 		i++;
 	}
 }
