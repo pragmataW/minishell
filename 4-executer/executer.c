@@ -22,7 +22,7 @@ static int	main_builtin(t_table *iter)
 	return (status);
 }
 
-static void	exit_status(int status)
+static void	exit_status(void)
 {
 	wait(&data.status);
 	if (WIFEXITED(data.status))
@@ -52,7 +52,7 @@ static void	improved_exec(int i, int j, int pc, int **fd)
 			else
 				dup_mids(iter, fd, j);
 		}
-		exit_status(data.status);
+		exit_status();
 		iter = iter->next;
 		close_main_fd(fd, &j, &i, pc);
 	}
