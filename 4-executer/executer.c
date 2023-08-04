@@ -1,20 +1,24 @@
 #include "../minishell.h"
 
-static void	main_builtin(t_table *iter)
+static int	main_builtin(t_table *iter)
 {
+	int	status;
+
 	if (ft_strncmp(iter->cmd_path, "exit") == 0)
 		exit(0);
 	else if (ft_strncmp(iter->cmd_path, "unset") == 0)
-		ft_unset(iter->full_cmd, 1);
+		status = ft_unset(iter->full_cmd, 1);
 	else if (ft_strncmp(iter->cmd_path, "export") == 0)
-		ft_export(iter->full_cmd);
+		status = ft_export(iter->full_cmd);
 	else if (ft_strncmp(iter->cmd_path, "cd") == 0)
-		ft_cd(iter->full_cmd);
+		status = ft_cd(iter->full_cmd);
 	else if (ft_strncmp(iter->cmd_path, "clr") == 0)
 	{
 		printf(CLEAR_TERM);
 		printf(RESET_CURSOR);
+		status = 0;
 	}
+	return (status);
 }
 
 static void	improved_exec(int i, int j, int pc, int **fd)
@@ -23,9 +27,8 @@ static void	improved_exec(int i, int j, int pc, int **fd)
 	t_table	*iter;
 
 	iter = *data.cmd_table;
-	while (i < pc)
+	while (i < pc && data.heredoc == 0)
 	{
-		main_builtin(iter);
 		id = fork();
 		if (id == 0)
 		{
@@ -38,13 +41,16 @@ static void	improved_exec(int i, int j, int pc, int **fd)
 			else
 				dup_mids(iter, fd, j);
 		}
-		wait(NULL);
+		data.status = main_builtin(iter);
+		wait(&data.status);
+		if (WIFEXITED(data.status))
+			data.status = WEXITSTATUS(data.status);
 		iter = iter->next;
 		close_main_fd(fd, &j, &i, pc);
 	}
 }
 
-void	executer(t_table **cmd_table, int i, int j)
+void	executer(int i, int j)
 {
 	int		**fd;
 	char	*path;

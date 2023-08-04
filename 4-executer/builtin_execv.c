@@ -8,4 +8,5 @@ void	builtin_execv(t_table *node)
 		ft_pwd();
 	else if (ft_strncmp(node->cmd_path, "env") == 0)
 		ft_env();
+	exit(0);
 }

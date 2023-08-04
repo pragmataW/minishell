@@ -50,31 +50,32 @@ char	*open_path(void)
 	return (ret);
 }
 
-int	get_heredoc(int fd, char *input)
+int	get_heredoc(int fd, char *input, int id)
 {
 	char	*line;
-	char	*tmp;
-	int		id;
+	char	*path;
 
+	path = open_path();
 	line = NULL;
+	data.heredoc = 1;
 	id = fork();
-	tmp = open_path();
 	if (id == 0)
 	{
+		signal(SIGINT, heredoc_sig);
 		while (1)
 		{
 			line = readline("\033[1;31m<< \033[0m ");
 			if (!ft_strncmp(line, input))
 			{
 				free(line);
-				return (open(tmp, O_RDONLY, 0644));
+				return (open(path, O_RDONLY, 0644));
 			}
 			write(fd, line, ft_strlen(line));
 			write(fd, "\n", 1);
 			free(line);
 		}
-		close(fd);
 	}
 	else
 		wait(NULL);
+	return (-1);
 }

@@ -22,7 +22,9 @@ static char	*get_fullstr(void)
 	char	*pwd;
 	char	*ret;
 	char	*tmp;
-	char	*txt = ft_strjoin(T, PWD_COLOR);
+	char	*txt;
+
+	txt = ft_strjoin(T, PWD_COLOR);
 	uname = get_uname();
 	pwd = get_pwd();
 	ret = ft_strjoin(RED, uname);

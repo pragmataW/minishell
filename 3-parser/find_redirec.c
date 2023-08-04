@@ -87,7 +87,7 @@ static void	infile_redirec(t_table *iter, int i, int fd)
 	}
 }
 
-static void	heredoc_redirec(t_table *iter, int i, int id, int fd)
+static void	heredoc_redirec(t_table *iter, int i, int fd)
 {
 	char	*path;
 
@@ -109,7 +109,7 @@ static void	heredoc_redirec(t_table *iter, int i, int id, int fd)
 			}
 			path = open_path();
 			fd = open(path, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-			fd = get_heredoc(fd, iter->full_cmd[i + 1]);
+			fd = get_heredoc(fd, iter->full_cmd[i + 1], 0);
 			set_heredoc_fd(iter, i, fd);
 		}
 		i++;
@@ -136,7 +136,7 @@ void	find_redirec(t_table **root)
 			if (!ft_strncmp(iter->full_cmd[i], "<") && cmd_size == 1)
 				infile_redirec(iter, 0, 0);
 			if (!ft_strncmp(iter->full_cmd[i], "<<") && cmd_size == 2)
-				heredoc_redirec(iter, 0, 0, 0);
+				heredoc_redirec(iter, 0, 0);
 			i++;
 		}
 		iter = iter->next;

@@ -10,6 +10,7 @@
 # include <readline/history.h>
 # include <sys/stat.h>
 # include <sys/wait.h>
+# include <sys/ioctl.h>
 # include "libft/libft.h"
 
 # define T "🥵minishell\033[38;2;243;222;186m⤵\033[0m\033[0m\033[38;2;243;222;186m"
@@ -41,8 +42,9 @@ typedef struct s_data
 	struct s_table	**cmd_table;
 	int				process_count;
 	int				counter;
+	int				status;
+	int				heredoc;
 }				t_data;
-
 
 extern t_data	data;
 
@@ -91,12 +93,12 @@ void		find_redirec(t_table **root);
 void		terminate_command(t_table *iter);
 void		set_fd(t_table *iter, int i, int fd, char opt);
 char		*open_path(void);
-int			get_heredoc(int fd, char *input);
+int			get_heredoc(int fd, char *input, int id);
 void		set_heredoc_fd(t_table *iter, int i, int fd);
 //! PARSER
 t_table		**parser(t_list **expanded_str);
 //!EXECUTER
-void		executer(t_table **cmd_table, int i, int j);
+void		executer(int i, int j);
 //! EXECUTER UTILS
 int			process_counter(t_table **cmd_table);
 int			**create_pipes(int process_count);
@@ -126,4 +128,8 @@ void		export_keywords(char *add, int i);
 void		export_value(char *add);
 void		delete_value(char *delete);
 void		set_value(char *add, char *value);
+//! SIGNALS
+void		handle_sigint(int sig);
+void		signals_control(void);
+void		heredoc_sig(int sig);
 #endif
