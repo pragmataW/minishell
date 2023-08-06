@@ -67,4 +67,5 @@ void	executer(int i, int j)
 	fd = create_pipes(data.process_count);
 	improved_exec(i, j, data.process_count, fd);
 	unlink(path);
+    unlink("err");
 }
