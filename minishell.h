@@ -44,6 +44,7 @@ typedef struct s_data
 	int				counter;
 	int				status;
 	int				heredoc;
+	int				err;
 }				t_data;
 
 extern t_data	data;
@@ -132,8 +133,14 @@ void		set_value(char *add, char *value);
 void		handle_sigint(int sig);
 void		signals_control(void);
 void		heredoc_sig(int sig);
-//! SYNTAX ERROR
+//! ERROR_UTILS
 void		too_argumenst(t_table *iter);
 void		parse_error(t_table *iter);
 void		command_not_found(void);
+void		quote_check(t_list **lexed_str, int i);
+//! ERROR_UTILS2
+void		pipe_syntax_check(t_list **lexed_str);
+void		redirec_syntax_check(t_list **lexed_str);
+//! ERRORS
+void		errors(t_list **lexed_str, char *prompt);
 #endif

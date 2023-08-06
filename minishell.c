@@ -26,13 +26,26 @@ void	init_global(char **env)
 	data.env = envs;
 	data.counter = 0;
 	data.heredoc = 0;
+	data.err = 0;
+}
+
+void	main_extra(t_list **splited_str, char *prompt)
+{
+	char	*last_status;
+
+	add_history(prompt);
+	last_status = ft_itoa(data.status);
+	set_value("?", last_status);
+	command_not_found();
+	free(last_status);
+	free_list(splited_str, prompt);
+	data.heredoc = 0;
 }
 
 int	main(int argc, char *argv[], char **env)
 {
 	char	*prompt;
 	t_list	**splited_str;
-	char	*last_status;
 
 	(void)argc;
 	(void)argv;
@@ -44,15 +57,16 @@ int	main(int argc, char *argv[], char **env)
 	{
 		prompt = get_input();
 		splited_str = lexer(prompt, 0, 0, 0);
+		errors(splited_str, prompt);
+		if (data.err == 1)
+		{
+			data.err = 0;
+			free_list(splited_str, prompt);
+			continue ;
+		}
 		expander(splited_str);
 		parser(splited_str);
 		executer(0, -1);
-		last_status = ft_itoa(data.status);
-		set_value("?", last_status);
-		free(last_status);
-		add_history(prompt);
-		free_list(splited_str, prompt);
-		command_not_found();
-		data.heredoc = 0;
+		main_extra(splited_str, prompt);
 	}
 }
