@@ -21,12 +21,17 @@ void	free_list(t_list **list, char *prompt)
 void	init_global(char **env)
 {
 	t_env	*envs;
+	char	*last_status;
 
 	envs = env_variables(env, 0);
 	data.env = envs;
 	data.counter = 0;
 	data.heredoc = 0;
+	data.status = 0;
 	data.err = 0;
+	last_status = ft_itoa(data.status);
+	set_value("?", last_status);
+	free(last_status);
 }
 
 void	main_extra(t_list **splited_str, char *prompt)

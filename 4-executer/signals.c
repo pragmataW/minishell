@@ -13,10 +13,10 @@ void	handle_sigint(int sig)
 void	heredoc_sig(int sig)
 {
 	if (sig == SIGINT)
-    {
-        data.heredoc = 0;
+	{
+		data.heredoc = 0;
 		exit(0);
-    }
+	}
 }
 
 void	segfault_handler(int sig)
