@@ -55,8 +55,7 @@ int	main(int argc, char *argv[], char **env)
 		}
 		expander(splited_str);
 		parser(splited_str);
-        free_list(splited_str, prompt);
-		//executer(0, -1);
-		//main_extra(splited_str, prompt);
+		executer(0, -1);
+		main_extra(splited_str, prompt);
 	}
 }

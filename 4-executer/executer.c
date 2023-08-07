@@ -69,5 +69,5 @@ void	executer(int i, int j)
 	unlink(path);
 	unlink("err");
 	free(path);
-    free_fd(fd);
+    //free_fd(fd); --> SEGFAULT
 }
