@@ -13,6 +13,7 @@ void	errors(t_list **lexed_str, char *prompt)
 		g_data.status = 2;
 		last_status = ft_itoa(g_data.status);
 		set_value("?", last_status);
+		free(last_status);
 		add_history(prompt);
 	}
 }

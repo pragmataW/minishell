@@ -33,9 +33,11 @@ t_list	**lexer(char *prompt, int i, int j, int end)
 		command = malloc(sizeof(char) * ((&(prompt[i]) - tmp) + 1));
 		allocator(command, tmp, &(prompt[i]) - tmp);
 		cmd = ft_lstnew(command);
+		free(command);
 		ft_lstadd_back(root, cmd);
 		j++;
 	}
 	ret = trim_all(root);
+	free_list(root, NULL);
 	return (ret);
 }

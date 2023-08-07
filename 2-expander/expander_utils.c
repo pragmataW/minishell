@@ -29,6 +29,16 @@ void	expand_single_quote(t_list *iter, int *i, char *new_str, int *j)
 	*i = *i + 1;
 }
 
+static void	expand_dollar_extra(char *new_str, char *env_var, int *j)
+{
+	g_data.counter = 0;
+	while (env_var[g_data.counter])
+	{
+		new_str[*j] = env_var[g_data.counter++];
+		*j = *j + 1;
+	}
+}
+
 void	expand_dollar(t_list *it, int *i, char *new_str, int *j)
 {
 	char	*env_key;
@@ -47,14 +57,9 @@ void	expand_dollar(t_list *it, int *i, char *new_str, int *j)
 	env_key[g_data.counter] = '\0';
 	env_var = find_values(g_data.env, env_key, NULL);
 	if (env_var != NULL)
-	{
-		g_data.counter = 0;
-		while (env_var[g_data.counter])
-		{
-			new_str[*j] = env_var[g_data.counter++];
-			*j = *j + 1;
-		}
-	}
+		expand_dollar_extra(new_str, env_var, j);
+	free(env_key);
+	free(env_var);
 }
 
 void	tilda_extra(t_list *iter, int *i, char *new_str, int *k)

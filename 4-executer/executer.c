@@ -68,4 +68,6 @@ void	executer(int i, int j)
 	improved_exec(i, j, g_data.process_count, fd);
 	unlink(path);
 	unlink("err");
+	free(path);
+    free_fd(fd);
 }

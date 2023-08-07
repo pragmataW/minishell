@@ -19,16 +19,19 @@ void	new_command(t_list *iter, char *str)
 
 char	*find_values(t_env *env, char *kw, int *index)
 {
-	int	i;
+	int		i;
+	char	*ret;
 
 	i = 0;
+	ret = NULL;
 	while (env->keys[i] != NULL)
 	{
 		if (ft_strncmp(env->keys[i], kw) == 0)
 		{
 			if (index != NULL)
 				*index = i;
-			return (ft_strdup(env->values[i]));
+			ret = ft_strdup(env->values[i]);
+			return (ret);
 		}
 		i++;
 	}

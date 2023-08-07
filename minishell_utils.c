@@ -28,11 +28,13 @@ static char	*get_fullstr(void)
 	uname = get_uname();
 	pwd = get_pwd();
 	ret = ft_strjoin(RED, uname);
+	free(uname);
 	tmp = ft_strdup(ret);
 	free(ret);
 	ret = ft_strjoin(tmp, txt);
 	free(tmp);
 	tmp = ft_strjoin(ret, pwd);
+	free(pwd);
 	free(ret);
 	ret = ft_strjoin(tmp, LAST_TXT);
 	free(tmp);
@@ -46,6 +48,7 @@ char	*get_input(void)
 	char	*fullstr;
 
 	fullstr = get_fullstr();
+
 	input = readline(fullstr);
 	free(fullstr);
 	return (input);

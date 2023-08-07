@@ -43,6 +43,7 @@ static void	expand_var(t_list **splitted_str, int i, int j)
 		}
 		new_str[j] = '\0';
 		new_command(iter, new_str);
+		free(new_str);
 		iter = iter->next;
 	}
 }

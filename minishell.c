@@ -2,22 +2,6 @@
 
 t_data	g_data;
 
-void	free_list(t_list **list, char *prompt)
-{
-	t_list	*iter;
-	t_list	*tmp;
-
-	iter = *list;
-	free(prompt);
-	while (iter)
-	{
-		tmp = iter->next;
-		free(iter->command);
-		free(iter);
-		iter = tmp;
-	}
-}
-
 void	init_global(char **env)
 {
 	t_env	*envs;
@@ -71,7 +55,8 @@ int	main(int argc, char *argv[], char **env)
 		}
 		expander(splited_str);
 		parser(splited_str);
-		executer(0, -1);
-		main_extra(splited_str, prompt);
+        free_list(splited_str, prompt);
+		//executer(0, -1);
+		//main_extra(splited_str, prompt);
 	}
 }

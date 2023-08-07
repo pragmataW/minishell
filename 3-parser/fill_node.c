@@ -36,7 +36,7 @@ t_table	**fill_node(t_list **list, int i)
 	{
 		i = 0;
 		node = malloc(sizeof(t_table));
-		node->cmd_path = iter->command;
+		node->cmd_path = ft_strdup(iter->command);
 		node->full_cmd = malloc(sizeof(char *) * (node_counter(iter) + 1));
 		while (iter && ft_strncmp(iter->command, "|") != 0)
 		{

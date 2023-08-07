@@ -44,6 +44,7 @@ static void	trim_all_extra(t_list **ret, t_list *iter, int i, int j)
 			will_push[j] = '\0';
 			ft_lstadd_back(ret, ft_lstnew(will_push));
 		}
+		free(will_push);
 	}
 }
 

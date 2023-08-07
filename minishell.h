@@ -50,7 +50,6 @@ typedef struct s_data
 extern t_data	g_data;
 
 //! MINISHELL
-void		free_list(t_list **list, char *prompt);
 void		init_global(char **env);
 //!MINISHELL UTILS
 char		*get_input(void);
@@ -97,7 +96,7 @@ char		*open_path(void);
 void		get_heredoc(int fd, char *input, int id);
 void		set_heredoc_fd(t_table *iter, int i, int fd);
 //! PARSER
-t_table		**parser(t_list **expanded_str);
+void		parser(t_list **expanded_str);
 //!EXECUTER
 void		executer(int i, int j);
 //! EXECUTER UTILS
@@ -123,7 +122,6 @@ void		builtin_execv(t_table *node);
 int			is_exportable(char *var);
 int			matrix_size(char **matrix);
 char		**resize_matrix(char	**matrix);
-void		free_matrix(char **matrix);
 void		export_keywords(char *add, int i);
 //! BUILT-IN UTILS2
 void		export_value(char *add);
@@ -143,4 +141,9 @@ void		pipe_syntax_check(t_list **lexed_str);
 void		redirec_syntax_check(t_list **lexed_str);
 //! ERRORS
 void		errors(t_list **lexed_str, char *prompt);
+//! FREE
+void		free_list(t_list **list, char *prompt);
+void		free_parsed(t_table **parsed);
+void		free_matrix(char **matrix);
+void		free_fd(int **fd);
 #endif

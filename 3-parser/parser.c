@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-t_table	**parser(t_list **expanded_str)
+void	parser(t_list **expanded_str)
 {
 	t_table	**root;
 
@@ -9,5 +9,4 @@ t_table	**parser(t_list **expanded_str)
 	find_redirec(root);
 	g_data.process_count = process_counter(root);
 	g_data.cmd_table = root;
-	return (root);
 }

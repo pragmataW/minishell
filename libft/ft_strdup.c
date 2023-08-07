@@ -6,7 +6,7 @@
 /*   By: yciftci <yciftci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 12:06:43 by yciftci           #+#    #+#             */
-/*   Updated: 2023/08/06 20:58:22 by yciftci          ###   ########.fr       */
+/*   Updated: 2023/08/07 15:22:37 by yciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(const char *str)
 	size_t	len;
 
 	len = ft_strlen(str);
-	str2 = (char *)malloc(len + 1);
+	str2 = (char *)malloc(sizeof(char ) * (len + 1));
 	if (!(str2))
 	{
 		return (NULL);
