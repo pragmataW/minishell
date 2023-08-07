@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-t_data	data;
+t_data	g_data;
 
 void	free_list(t_list **list, char *prompt)
 {
@@ -24,12 +24,12 @@ void	init_global(char **env)
 	char	*last_status;
 
 	envs = env_variables(env, 0);
-	data.env = envs;
-	data.counter = 0;
-	data.heredoc = 0;
-	data.status = 0;
-	data.err = 0;
-	last_status = ft_itoa(data.status);
+	g_data.env = envs;
+	g_data.counter = 0;
+	g_data.heredoc = 0;
+	g_data.status = 0;
+	g_data.err = 0;
+	last_status = ft_itoa(g_data.status);
 	set_value("?", last_status);
 	free(last_status);
 }
@@ -39,12 +39,12 @@ void	main_extra(t_list **splited_str, char *prompt)
 	char	*last_status;
 
 	add_history(prompt);
-	last_status = ft_itoa(data.status);
+	last_status = ft_itoa(g_data.status);
 	set_value("?", last_status);
 	command_not_found();
 	free(last_status);
 	free_list(splited_str, prompt);
-	data.heredoc = 0;
+	g_data.heredoc = 0;
 }
 
 int	main(int argc, char *argv[], char **env)
@@ -63,9 +63,9 @@ int	main(int argc, char *argv[], char **env)
 		prompt = get_input();
 		splited_str = lexer(prompt, 0, 0, 0);
 		errors(splited_str, prompt);
-		if (data.err == 1)
+		if (g_data.err == 1)
 		{
-			data.err = 0;
+			g_data.err = 0;
 			free_list(splited_str, prompt);
 			continue ;
 		}

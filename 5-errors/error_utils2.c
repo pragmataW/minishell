@@ -9,7 +9,7 @@ void	pipe_syntax_check(t_list **lexed_str)
 		return ;
 	if (i->command[0] == '|')
 	{
-		data.err = 1;
+		g_data.err = 1;
 		return ;
 	}
 	while (i)
@@ -18,7 +18,7 @@ void	pipe_syntax_check(t_list **lexed_str)
 				|| i->next->command[0] == '>'
 				|| i->next->command[0] == '<' || i->next->command[0] == '|'))
 		{
-			data.err = 1;
+			g_data.err = 1;
 			return ;
 		}
 		i = i->next;
@@ -34,7 +34,7 @@ void	redirec_syntax_check(t_list **lexed_str)
 		return ;
 	if (i->command[0] == '>' || i->command[0] == '<')
 	{
-		data.err = 1;
+		g_data.err = 1;
 		return ;
 	}
 	while (i)
@@ -43,7 +43,7 @@ void	redirec_syntax_check(t_list **lexed_str)
 				|| i->next->command[0] == '>'
 				|| i->next->command[0] == '<' || i->next->command[0] == '|'))
 		{
-			data.err = 1;
+			g_data.err = 1;
 			return ;
 		}
 		i = i->next;

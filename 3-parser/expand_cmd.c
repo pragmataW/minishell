@@ -7,7 +7,7 @@ void	expand_cmd(t_table **table, int i)
 	char	*new_path;
 
 	iter = *table;
-	paths = ft_split(find_values(data.env, "PATH", NULL), ':');
+	paths = ft_split(find_values(g_data.env, "PATH", NULL), ':');
 	while (iter && paths)
 	{
 		i = 0;

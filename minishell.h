@@ -47,7 +47,7 @@ typedef struct s_data
 	int				err;
 }				t_data;
 
-extern t_data	data;
+extern t_data	g_data;
 
 //! MINISHELL
 void		free_list(t_list **list, char *prompt);

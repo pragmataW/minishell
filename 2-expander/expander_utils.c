@@ -35,23 +35,23 @@ void	expand_dollar(t_list *it, int *i, char *new_str, int *j)
 	char	*env_var;
 
 	*i = *i + 1;
-	data.counter = 0;
+	g_data.counter = 0;
 	env_key = malloc(sizeof(char ) * 100);
 	while (it->command[*i] != ' ' && it->command[*i] != '\''
 		&& it->command[*i] != '\"' && it->command[*i] != '\0'
 		&& it->command[*i] != '$')
 	{
-			env_key[data.counter++] = it->command[*i];
+			env_key[g_data.counter++] = it->command[*i];
 			*i = *i + 1;
 	}
-	env_key[data.counter] = '\0';
-	env_var = find_values(data.env, env_key, NULL);
+	env_key[g_data.counter] = '\0';
+	env_var = find_values(g_data.env, env_key, NULL);
 	if (env_var != NULL)
 	{
-		data.counter = 0;
-		while (env_var[data.counter])
+		g_data.counter = 0;
+		while (env_var[g_data.counter])
 		{
-			new_str[*j] = env_var[data.counter++];
+			new_str[*j] = env_var[g_data.counter++];
 			*j = *j + 1;
 		}
 	}
@@ -72,8 +72,8 @@ void	tilda_extra(t_list *iter, int *i, char *new_str, int *k)
 	}
 	if (iter->command[*i] == '~' && iter->command[*i - 1] != '/')
 	{
-		while (data.env->tilda[j])
-			new_str[(*k)++] = data.env->tilda[j++];
+		while (g_data.env->tilda[j])
+			new_str[(*k)++] = g_data.env->tilda[j++];
 		(*i)++;
 	}
 	else

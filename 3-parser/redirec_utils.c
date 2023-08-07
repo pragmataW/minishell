@@ -34,12 +34,12 @@ void	set_fd(t_table *iter, int i, int fd, char opt)
 
 void	set_heredoc_fd(t_table *iter, int i, int fd)
 {
-	if (data.heredoc == 0)
+	if (g_data.heredoc == 0)
 		fd = open ("err", O_CREAT, 777);
 	iter->infile = fd;
 	free(iter->full_cmd[i]);
 	iter->full_cmd[i] = NULL;
-	data.heredoc = 1;
+	g_data.heredoc = 1;
 }
 
 char	*open_path(void)
@@ -58,7 +58,7 @@ void	get_heredoc(int fd, char *input, int id)
 	char	*line;
 
 	line = NULL;
-	data.heredoc = 1;
+	g_data.heredoc = 1;
 	id = fork();
 	if (id == 0)
 	{
@@ -77,5 +77,5 @@ void	get_heredoc(int fd, char *input, int id)
 		}
 	}
 	else
-		wait(&data.heredoc);
+		wait(&g_data.heredoc);
 }

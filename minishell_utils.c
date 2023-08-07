@@ -4,7 +4,7 @@ static char	*get_uname(void)
 {
 	char	*uname;
 
-	uname = find_values(data.env, "USER", NULL);
+	uname = find_values(g_data.env, "USER", NULL);
 	return (uname);
 }
 
@@ -12,7 +12,7 @@ static char	*get_pwd(void)
 {
 	char	*pwd;
 
-	pwd = find_values(data.env, "PWD", NULL);
+	pwd = find_values(g_data.env, "PWD", NULL);
 	return (pwd);
 }
 

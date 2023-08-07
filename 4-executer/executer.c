@@ -24,9 +24,9 @@ static int	main_builtin(t_table *iter)
 
 static void	exit_status(void)
 {
-	wait(&data.status);
-	if (WIFEXITED(data.status))
-		data.status = WEXITSTATUS(data.status);
+	wait(&g_data.status);
+	if (WIFEXITED(g_data.status))
+		g_data.status = WEXITSTATUS(g_data.status);
 }
 
 static void	improved_exec(int i, int j, int pc, int **fd)
@@ -34,11 +34,11 @@ static void	improved_exec(int i, int j, int pc, int **fd)
 	int		id;
 	t_table	*iter;
 
-	iter = *data.cmd_table;
-	while (i < pc && data.heredoc == 0)
+	iter = *g_data.cmd_table;
+	while (i < pc && g_data.heredoc == 0)
 	{
-		data.status = main_builtin(iter);
-		if (data.status != -1)
+		g_data.status = main_builtin(iter);
+		if (g_data.status != -1)
 			return ;
 		id = fork();
 		if (id == 0)
@@ -64,8 +64,8 @@ void	executer(int i, int j)
 	char	*path;
 
 	path = open_path();
-	fd = create_pipes(data.process_count);
-	improved_exec(i, j, data.process_count, fd);
+	fd = create_pipes(g_data.process_count);
+	improved_exec(i, j, g_data.process_count, fd);
 	unlink(path);
 	unlink("err");
 }

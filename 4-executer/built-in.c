@@ -39,13 +39,13 @@ int	ft_env(void)
 	int	i;
 
 	i = 0;
-	while (data.env->keys[i])
+	while (g_data.env->keys[i])
 	{
-		if (data.env->values[i])
+		if (g_data.env->values[i])
 		{
-			ft_putstr_fd(data.env->keys[i], 1);
+			ft_putstr_fd(g_data.env->keys[i], 1);
 			ft_putchar_fd('=', 1);
-			ft_putendl_fd(data.env->values[i], 1);
+			ft_putendl_fd(g_data.env->values[i], 1);
 		}
 		i++;
 	}
@@ -59,7 +59,7 @@ int	ft_unset(char **args, int i)
 
 	while (args[i])
 	{
-		tmp = find_values(data.env, args[i], &index);
+		tmp = find_values(g_data.env, args[i], &index);
 		if (tmp)
 			free(tmp);
 		else
@@ -67,12 +67,12 @@ int	ft_unset(char **args, int i)
 			i++;
 			continue ;
 		}
-		free(data.env->keys[index]);
-		data.env->keys[index] = ft_strdup(" ");
-		free(data.env->values[index]);
-		data.env->values[index] = ft_strdup(" ");
-		data.env->keys = resize_matrix(data.env->keys);
-		data.env->values = resize_matrix(data.env->values);
+		free(g_data.env->keys[index]);
+		g_data.env->keys[index] = ft_strdup(" ");
+		free(g_data.env->values[index]);
+		g_data.env->values[index] = ft_strdup(" ");
+		g_data.env->keys = resize_matrix(g_data.env->keys);
+		g_data.env->values = resize_matrix(g_data.env->values);
 		i++;
 	}
 	return (0);

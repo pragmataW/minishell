@@ -81,21 +81,21 @@ void	export_keywords(char *add, int i)
 	int		size;
 	char	*tmp;
 
-	size = matrix_size(data.env->keys);
+	size = matrix_size(g_data.env->keys);
 	ret = malloc(sizeof(char *) * (size + 2));
-	tmp = find_values(data.env, add, NULL);
+	tmp = find_values(g_data.env, add, NULL);
 	if (tmp)
 	{
 		delete_value(add);
 		free(tmp);
 	}
-	while (data.env->keys[i])
+	while (g_data.env->keys[i])
 	{
-		ret[i] = ft_strdup(data.env->keys[i]);
+		ret[i] = ft_strdup(g_data.env->keys[i]);
 		i++;
 	}
 	ret[i] = ft_strdup(add);
 	ret[++i] = NULL;
-	free_matrix(data.env->keys);
-	data.env->keys = ret;
+	free_matrix(g_data.env->keys);
+	g_data.env->keys = ret;
 }

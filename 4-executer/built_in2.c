@@ -4,7 +4,7 @@ static void	go_home(void)
 {
 	char	*path;
 
-	path = find_values(data.env, "HOME", NULL);
+	path = find_values(g_data.env, "HOME", NULL);
 	set_value("OLDPWD", getcwd(NULL, 0));
 	chdir(path);
 	set_value("PWD", getcwd(NULL, 0));
@@ -14,7 +14,7 @@ static void	go_oldpwd(void)
 {
 	char	*path;
 
-	path = find_values(data.env, "OLDPWD", NULL);
+	path = find_values(g_data.env, "OLDPWD", NULL);
 	set_value("OLDPWD", getcwd(NULL, 0));
 	chdir(path);
 	set_value("PWD", getcwd(NULL, 0));

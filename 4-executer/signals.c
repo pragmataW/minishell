@@ -14,7 +14,7 @@ void	heredoc_sig(int sig)
 {
 	if (sig == SIGINT)
 	{
-		data.heredoc = 0;
+		g_data.heredoc = 0;
 		exit(0);
 	}
 }
