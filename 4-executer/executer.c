@@ -6,7 +6,10 @@ static int	main_builtin(t_table *iter)
 
 	status = -1;
 	if (ft_strncmp(iter->cmd_path, "exit") == 0)
+	{
+		free_global();
 		exit(0);
+	}
 	else if (ft_strncmp(iter->cmd_path, "unset") == 0)
 		status = ft_unset(iter->full_cmd, 1);
 	else if (ft_strncmp(iter->cmd_path, "export") == 0)
@@ -69,5 +72,5 @@ void	executer(int i, int j)
 	unlink(path);
 	unlink("err");
 	free(path);
-    //free_fd(fd); --> SEGFAULT
+	free_fd(fd);
 }

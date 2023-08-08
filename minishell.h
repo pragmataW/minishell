@@ -79,8 +79,8 @@ void		expander(t_list **splitted_str);
 //! PARSER UTILS
 void		table_add_back(t_table **lst, t_table *new);
 t_table		*table_last(t_table *lst);
-t_table		*table_new(void);
 char		*find_path(char *path, char *command);
+t_table		*table_new(char *content);
 //! EXPAND_CMD
 int			is_builtin(char *cmd);
 void		expand_cmd(t_table **table, int i);
@@ -146,4 +146,5 @@ void		free_list(t_list **list, char *prompt);
 void		free_parsed(t_table **parsed);
 void		free_matrix(char **matrix);
 void		free_fd(int **fd);
+void		free_global(void);
 #endif

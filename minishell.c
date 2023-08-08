@@ -28,6 +28,7 @@ void	main_extra(t_list **splited_str, char *prompt)
 	command_not_found();
 	free(last_status);
 	free_list(splited_str, prompt);
+	free_parsed(g_data.cmd_table);
 	g_data.heredoc = 0;
 }
 

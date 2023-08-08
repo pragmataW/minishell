@@ -28,7 +28,7 @@ void	free_parsed(t_table **parsed)
 	{
 		tmp = iter->next;
 		free(iter->cmd_path);
-		free(iter->full_cmd);
+		free_matrix(iter->full_cmd);
 		free(iter);
 		iter = tmp;
 	}
@@ -53,10 +53,18 @@ void	free_fd(int **fd)
 	int	i;
 
 	i = 0;
-	while (fd[i])
+	while (i < g_data.process_count)
 	{
 		free(fd[i]);
 		i++;
 	}
 	free(fd);
+}
+
+void	free_global(void)
+{
+	free_matrix(g_data.env->keys);
+	free_matrix(g_data.env->values);
+	free(g_data.env->tilda);
+	free(g_data.env);
 }
