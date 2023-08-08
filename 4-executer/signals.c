@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-void	handle_sigint(int sig)
+static void	handle_sigint(int sig)
 {
 	if (sig == SIGINT)
 	{
@@ -19,18 +19,8 @@ void	heredoc_sig(int sig)
 	}
 }
 
-void	segfault_handler(int sig)
-{
-	if (sig == SIGSEGV)
-	{
-		free_global();
-		exit(0);
-	}
-}
-
 void	signals_control(void)
 {
 	signal(SIGINT, handle_sigint);
-	signal(SIGSEGV, segfault_handler);
 	signal(SIGQUIT, SIG_IGN);
 }

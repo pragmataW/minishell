@@ -2,7 +2,7 @@
 
 t_data	g_data;
 
-void	init_global(char **env)
+static void	init_global(char **env)
 {
 	t_env	*envs;
 	char	*last_status;
@@ -18,7 +18,7 @@ void	init_global(char **env)
 	free(last_status);
 }
 
-void	main_extra(t_list **splited_str, char *prompt)
+static void	main_extra(t_list **splited_str, char *prompt)
 {
 	char	*last_status;
 
@@ -32,22 +32,41 @@ void	main_extra(t_list **splited_str, char *prompt)
 	g_data.heredoc = 0;
 }
 
-int	main(int argc, char *argv[], char **env)
+static void	start(int argc, char *argv[], char **env)
 {
-	char	*prompt;
-	t_list	**splited_str;
-
 	(void)argc;
 	(void)argv;
 	init_global(env);
 	printf(CLEAR_TERM);
 	printf(RESET_CURSOR);
 	signals_control();
+}
+
+static void	prompt_check(char *prompt)
+{
+	if (!prompt)
+	{
+		free_global();
+		exit(0);
+	}
+}
+
+int	main(int argc, char *argv[], char **env)
+{
+	char	*prompt;
+	t_list	**splited_str;
+
+	start(argc, argv, env);
 	while (1)
 	{
 		prompt = get_input();
-		splited_str = lexer(prompt, 0, 0, 0);
-		errors(splited_str, prompt);
+		prompt_check(prompt);
+		if (prompt[0] == 0)
+		{
+			free(prompt);
+			continue ;
+		}
+		splited_str = lexer(prompt, 0, 0);
 		if (g_data.err == 1)
 		{
 			g_data.err = 0;

@@ -4,9 +4,9 @@ static void	expand_cmd_extra(int i, char **paths, t_table *iter)
 {
 	char	*new_path;
 
-	while (paths[i++])
+	while (paths[i])
 	{
-		new_path = find_path(paths[i], iter->cmd_path);
+		new_path = find_path(paths[i++], iter->cmd_path);
 		if (access(new_path, F_OK) == 0)
 			iter->cmd_path = ft_strdup(new_path);
 		free(new_path);
@@ -24,7 +24,7 @@ void	expand_cmd(t_table **table, int i)
 	iter = *table;
 	value = find_values(g_data.env, "PATH", NULL);
 	paths = ft_split(value, ':');
-	while (iter && paths)
+	while (iter && paths[i])
 	{
 		i = 0;
 		if (!is_builtin(iter->cmd_path))

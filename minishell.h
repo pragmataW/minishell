@@ -49,12 +49,10 @@ typedef struct s_data
 
 extern t_data	g_data;
 
-//! MINISHELL
-void		init_global(char **env);
 //!MINISHELL UTILS
 char		*get_input(void);
 //! LEXER
-t_list		**lexer(char *prompt, int i, int j, int end);
+t_list		**lexer(char *prompt, int i, int end);
 t_list		**trim_all(t_list **splited_str);
 //! LEXER UTILS
 void		allocator(char *ret, char *src, int len);
@@ -128,7 +126,6 @@ void		export_value(char *add);
 void		delete_value(char *delete);
 void		set_value(char *add, char *value);
 //! SIGNALS
-void		handle_sigint(int sig);
 void		signals_control(void);
 void		heredoc_sig(int sig);
 //! ERROR_UTILS

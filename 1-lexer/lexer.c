@@ -13,7 +13,7 @@ static void	lexer_extra(char *prompt, int *i, char **tmp)
 	}
 }
 
-t_list	**lexer(char *prompt, int i, int j, int end)
+t_list	**lexer(char *prompt, int i, int end)
 {
 	t_list	*cmd;
 	t_list	**root;
@@ -35,9 +35,9 @@ t_list	**lexer(char *prompt, int i, int j, int end)
 		cmd = ft_lstnew(command);
 		free(command);
 		ft_lstadd_back(root, cmd);
-		j++;
 	}
 	ret = trim_all(root);
 	free_list(root, NULL);
+	errors(ret, prompt);
 	return (ret);
 }
