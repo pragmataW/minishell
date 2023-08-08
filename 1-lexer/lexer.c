@@ -23,8 +23,7 @@ t_list	**lexer(char *prompt, int i, int end)
 
 	root = malloc(sizeof(t_list *));
 	*root = NULL;
-	while (prompt[end])
-		end++;
+	end = ft_strlen(prompt) - 1;
 	while (prompt[end] == ' ' || prompt[end] == '\t' || prompt[end] == '\0')
 		end--;
 	while (prompt[i] && i <= end)

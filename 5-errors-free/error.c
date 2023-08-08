@@ -17,3 +17,4 @@ void	errors(t_list **lexed_str, char *prompt)
 		add_history(prompt);
 	}
 }
+

@@ -75,7 +75,7 @@ void	tilda_extra(t_list *iter, int *i, char *new_str, int *k)
 		while (iter->command[*i] != '\0' && iter->command[*i] != c)
 			new_str[(*k)++] = iter->command[(*i)++];
 	}
-	if (iter->command[*i] == '~' && iter->command[*i - 1] != '/')
+	if (iter->command[*i] == '~' && (*i == 0 || iter->command[*i - 1] != '/'))
 	{
 		while (g_data.env->tilda[j])
 			new_str[(*k)++] = g_data.env->tilda[j++];

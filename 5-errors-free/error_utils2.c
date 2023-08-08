@@ -49,3 +49,17 @@ void	redirec_syntax_check(t_list **lexed_str)
 		i = i->next;
 	}
 }
+
+int	is_full_space(char *prompt)
+{
+	int	i;
+
+	i = 0;
+	while (prompt[i])
+	{
+		if (prompt[i] != ' ' && prompt[i] != '\t')
+			return (0);
+		i++;
+	}
+	return (1);
+}

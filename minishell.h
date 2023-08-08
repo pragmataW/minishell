@@ -136,6 +136,7 @@ void		quote_check(t_list **lexed_str, int i);
 //! ERROR_UTILS2
 void		pipe_syntax_check(t_list **lexed_str);
 void		redirec_syntax_check(t_list **lexed_str);
+int			is_full_space(char *prompt);
 //! ERRORS
 void		errors(t_list **lexed_str, char *prompt);
 //! FREE
