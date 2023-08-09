@@ -69,7 +69,7 @@ void	get_heredoc(int fd, char *input, int id)
 			if (!ft_strncmp(line, input))
 			{
 				free(line);
-				exit (0);
+				exit(1);
 			}
 			write(fd, line, ft_strlen(line));
 			write(fd, "\n", 1);

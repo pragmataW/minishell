@@ -38,7 +38,7 @@ static void	improved_exec(int i, int j, int pc, int **fd)
 	t_table	*iter;
 
 	iter = *g_data.cmd_table;
-	while (i < pc && g_data.heredoc == 0)
+	while (i < pc && g_data.heredoc == 1)
 	{
 		g_data.status = main_builtin(iter);
 		if (g_data.status != -1)

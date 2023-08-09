@@ -7,7 +7,7 @@ void	parse_error(t_table *iter)
 	g_data.status = 2;
 }
 
-void	too_argumenst(t_table *iter)
+void	too_arguments(t_table *iter)
 {
 	terminate_command(iter);
 	printf("minishell: parse error too many arguments\n");
