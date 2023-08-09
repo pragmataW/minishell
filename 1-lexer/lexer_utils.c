@@ -19,7 +19,7 @@ void	quotes_skipper(int *i, char *prompt)
 
 	quotes = prompt[*i];
 	*i = *i + 1;
-	while (prompt[*i] != quotes)
+	while (prompt[*i] != '\0' && prompt[*i] != quotes)
 		*i = *i + 1;
 }
 

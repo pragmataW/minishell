@@ -100,7 +100,6 @@ static void	heredoc_redirec(t_table *iter, int i, int fd)
 				too_argumenst(iter);
 				return ;
 			}
-			path = open_path();
 			fd = open(path, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 			get_heredoc(fd, iter->full_cmd[i + 1], 0);
 			fd = open(path, O_RDONLY, 0644);
@@ -108,6 +107,7 @@ static void	heredoc_redirec(t_table *iter, int i, int fd)
 		}
 		i++;
 	}
+	free(path);
 }
 
 void	find_redirec(t_table **root)

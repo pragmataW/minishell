@@ -8,7 +8,10 @@ static void	expand_cmd_extra(int i, char **paths, t_table *iter)
 	{
 		new_path = find_path(paths[i++], iter->cmd_path);
 		if (access(new_path, F_OK) == 0)
+		{
+			free(iter->cmd_path);
 			iter->cmd_path = ft_strdup(new_path);
+		}
 		free(new_path);
 	}
 	if (iter->cmd_path[0] == '.' && iter->cmd_path[1] == '/')
