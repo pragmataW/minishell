@@ -67,6 +67,13 @@ void	executer(int i, int j)
 	char	*path;
 
 	path = open_path();
+	if ((*g_data.cmd_table)->cmd_path == NULL)
+	{
+		unlink(path);
+		unlink("err");
+		free(path);
+		return ;
+	}
 	fd = create_pipes(g_data.process_count);
 	improved_exec(i, j, g_data.process_count, fd);
 	unlink(path);

@@ -13,11 +13,6 @@ static void	create_redirec(t_table *iter, int i, int fd)
 				parse_error(iter);
 				return ;
 			}
-			if (iter->full_cmd[i + 2])
-			{
-				too_arguments(iter);
-				return ;
-			}
 			file_name = iter->full_cmd[i + 1];
 			fd = open(file_name, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 			set_fd(iter, i, fd, 'o');
@@ -38,11 +33,6 @@ static void	append_redirec(t_table *iter, int i, int fd)
 			if (!iter->full_cmd[i + 1])
 			{
 				parse_error(iter);
-				return ;
-			}
-			if (iter->full_cmd[i + 2])
-			{
-				too_arguments(iter);
 				return ;
 			}
 			file_name = iter->full_cmd[i + 1];
@@ -67,11 +57,6 @@ static void	infile_redirec(t_table *iter, int i, int fd)
 				parse_error(iter);
 				return ;
 			}
-			if (iter->full_cmd[i + 2])
-			{
-				too_arguments(iter);
-				return ;
-			}
 			file_name = iter->full_cmd[i + 1];
 			fd = open(file_name, O_RDONLY, 0644);
 			set_fd(iter, i, fd, 'i');
@@ -92,11 +77,6 @@ static void	heredoc_redirec(t_table *iter, int i, int fd)
 			if (!iter->full_cmd[i + 1])
 			{
 				parse_error(iter);
-				return ;
-			}
-			if (iter->full_cmd[i + 2])
-			{
-				too_arguments(iter);
 				return ;
 			}
 			path = open_path();

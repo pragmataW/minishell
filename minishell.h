@@ -129,7 +129,6 @@ void		set_value(char *add, char *value);
 void		signals_control(void);
 void		heredoc_sig(int sig);
 //! ERROR_UTILS
-void		too_arguments(t_table *iter);
 void		parse_error(t_table *iter);
 void		command_not_found(void);
 int			quote_check(char *prompt);

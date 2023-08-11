@@ -5,6 +5,7 @@ void	terminate_command(t_table *iter)
 	int	i;
 
 	i = 1;
+	free(iter->cmd_path);
 	iter->cmd_path = NULL;
 	while (iter->full_cmd[i])
 	{
@@ -35,7 +36,7 @@ void	set_fd(t_table *iter, int i, int fd, char opt)
 void	set_heredoc_fd(t_table *iter, int i, int fd)
 {
 	if (g_data.heredoc == 0)
-		fd = open ("err", O_CREAT, 777);
+		fd = open("err", O_CREAT, 777);
 	iter->infile = fd;
 	free(iter->full_cmd[i]);
 	iter->full_cmd[i] = NULL;
