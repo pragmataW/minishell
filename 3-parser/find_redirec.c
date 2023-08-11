@@ -104,6 +104,7 @@ static void	heredoc_redirec(t_table *iter, int i, int fd)
 			get_heredoc(fd, iter->full_cmd[i + 1], 0);
 			fd = open(path, O_RDONLY, 0644);
 			set_heredoc_fd(iter, i, fd);
+			free(path);
 		}
 		i++;
 	}

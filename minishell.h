@@ -132,7 +132,7 @@ void		heredoc_sig(int sig);
 void		too_arguments(t_table *iter);
 void		parse_error(t_table *iter);
 void		command_not_found(void);
-void		quote_check(t_list **lexed_str, int i);
+int			quote_check(char *prompt);
 //! ERROR_UTILS2
 void		pipe_syntax_check(t_list **lexed_str);
 void		redirec_syntax_check(t_list **lexed_str);

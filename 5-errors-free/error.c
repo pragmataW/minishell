@@ -4,7 +4,6 @@ void	errors(t_list **lexed_str, char *prompt)
 {
 	char	*last_status;
 
-	quote_check(lexed_str, 0);
 	pipe_syntax_check(lexed_str);
 	redirec_syntax_check(lexed_str);
 	if (g_data.err == 1)

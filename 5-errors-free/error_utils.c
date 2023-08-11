@@ -21,31 +21,31 @@ void	command_not_found(void)
 	g_data.status = 0;
 }
 
-void	quote_check(t_list **lexed_str, int i)
+int	quote_check(char *prompt)
 {
-	t_list	*iter;
-	char	quote;
+	int		i;
+	int		quote_counter;
 
-	iter = *lexed_str;
-	while (iter)
+	i = 0;
+	quote_counter = 0;
+	while (prompt[i])
 	{
-		i = 0;
-		while (iter->command[i])
+		if (prompt[i] == '\'' || prompt[i] == '\"')
 		{
-			if (iter->command[i] == '\'' || iter->command[i] == '\"')
-			{
-				quote = iter->command[i];
-				i++;
-				while (iter->command[i] && iter->command[i] != quote)
-					i++;
-				if (iter->command[i] == '\0')
-				{
-					g_data.err = 1;
-					return ;
-				}
-			}
-			i++;
+			quote_counter++;
+			quotes_skipper(&i, prompt);
+			if (prompt[i] == '\0')
+				break ;
+			else
+				quote_counter++;
 		}
-		iter = iter->next;
+		i++;
+	}
+	if (quote_counter % 2 == 0)
+		return (1);
+	else
+	{
+		printf("minishell: syntax error\n");
+		return (0);
 	}
 }

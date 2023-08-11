@@ -61,7 +61,7 @@ int	main(int argc, char *argv[], char **env)
 	{
 		prompt = get_input();
 		prompt_check(prompt);
-		if (prompt[0] == 0 || is_full_space(prompt))
+		if (prompt[0] == 0 || is_full_space(prompt) || !quote_check(prompt))
 		{
 			free(prompt);
 			continue ;
