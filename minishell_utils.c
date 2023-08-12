@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yciftci <yciftci@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/12 20:58:41 by yciftci           #+#    #+#             */
+/*   Updated: 2023/08/12 20:59:43 by yciftci          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static char	*get_uname(void)
@@ -48,7 +60,6 @@ char	*get_input(void)
 	char	*fullstr;
 
 	fullstr = get_fullstr();
-
 	input = readline(fullstr);
 	free(fullstr);
 	return (input);

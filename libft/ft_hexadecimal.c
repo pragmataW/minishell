@@ -6,14 +6,14 @@
 /*   By: yciftci <yciftci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 15:24:59 by yciftci           #+#    #+#             */
-/*   Updated: 2023/08/07 15:19:35 by yciftci          ###   ########.fr       */
+/*   Updated: 2023/08/12 21:03:10 by yciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 int	ft_putptr(unsigned long long nbr)
-{	
+{
 	int	chr;
 
 	chr = 2;

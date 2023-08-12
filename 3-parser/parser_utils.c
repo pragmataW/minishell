@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yciftci <yciftci@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/12 20:57:17 by yciftci           #+#    #+#             */
+/*   Updated: 2023/08/12 21:00:02 by yciftci          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	table_add_back(t_table **lst, t_table *new)
@@ -18,7 +30,6 @@ t_table	*table_new(char *content)
 	ptr->cmd_path = ft_strdup(content);
 	return (ptr);
 }
-
 
 t_table	*table_last(t_table *lst)
 {

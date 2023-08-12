@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yciftci <yciftci@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/12 20:57:56 by yciftci           #+#    #+#             */
+/*   Updated: 2023/08/12 21:01:06 by yciftci          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	parse_error(t_table *iter)
@@ -6,7 +18,6 @@ void	parse_error(t_table *iter)
 	printf("minishell: parse error no file\n");
 	g_data.status = 2;
 }
-
 
 void	command_not_found(void)
 {

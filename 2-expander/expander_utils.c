@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expander_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yciftci <yciftci@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/12 20:56:56 by yciftci           #+#    #+#             */
+/*   Updated: 2023/08/12 21:02:47 by yciftci          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	expand_quote(t_list *iter, int *i, char *new_str, int *j)
@@ -51,8 +63,8 @@ void	expand_dollar(t_list *it, int *i, char *new_str, int *j)
 		&& it->command[*i] != '\"' && it->command[*i] != '\0'
 		&& it->command[*i] != '$')
 	{
-			env_key[g_data.counter++] = it->command[*i];
-			*i = *i + 1;
+		env_key[g_data.counter++] = it->command[*i];
+		*i = *i + 1;
 	}
 	env_key[g_data.counter] = '\0';
 	env_var = find_values(g_data.env, env_key, NULL);

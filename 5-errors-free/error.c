@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yciftci <yciftci@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/12 20:58:01 by yciftci           #+#    #+#             */
+/*   Updated: 2023/08/12 21:00:50 by yciftci          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	errors(t_list **lexed_str, char *prompt)
@@ -16,4 +28,3 @@ void	errors(t_list **lexed_str, char *prompt)
 		add_history(prompt);
 	}
 }
-

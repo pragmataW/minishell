@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lexer.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yciftci <yciftci@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/12 20:56:39 by yciftci           #+#    #+#             */
+/*   Updated: 2023/08/12 21:02:02 by yciftci          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 static void	lexer_extra(char *prompt, int *i, char **tmp)
 {
 	while ((prompt[*i] == ' ' || prompt[*i] == '\t') && prompt[*i] != '\0')
-			*i = *i + 1;
+		*i = *i + 1;
 	*tmp = &prompt[*i];
 	while (prompt[*i] != ' ' && prompt[*i] != '\t' && prompt[*i] != '\0')
 	{

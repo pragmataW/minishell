@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   executer_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yciftci <yciftci@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/12 20:57:43 by yciftci           #+#    #+#             */
+/*   Updated: 2023/08/12 21:00:36 by yciftci          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 int	process_counter(t_table **cmd_table)
@@ -21,7 +33,6 @@ int	**create_pipes(int process_count)
 	int	i;
 
 	i = 0;
-
 	fd = malloc(sizeof(int *) * process_count);
 	while (i < process_count)
 	{

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   trim_all.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yciftci <yciftci@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/12 20:56:42 by yciftci           #+#    #+#             */
+/*   Updated: 2023/08/12 21:02:26 by yciftci          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
-static void	special_char_trim(int * i, t_list *iter, t_list **ret, char *w_p)
+static void	special_char_trim(int *i, t_list *iter, t_list **ret, char *w_p)
 {
 	if (iter->command[*i] == '<' && iter->command[*i + 1] == '<')
 	{
