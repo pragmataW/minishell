@@ -46,7 +46,7 @@ char	*ft_str_realloc(char *str)
 	char	*ret;
 
 	i = 0;
-	ret = malloc(sizeof(char) * strlen(str) + 1);
+	ret = malloc(sizeof(char) * ft_strlen(str) + 1);
 	while (str[i])
 	{
 		ret[i] = str[i];
