@@ -6,7 +6,7 @@
 /*   By: yciftci <yciftci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 20:57:46 by yciftci           #+#    #+#             */
-/*   Updated: 2023/08/12 20:57:47 by yciftci          ###   ########.fr       */
+/*   Updated: 2023/08/12 21:36:43 by yciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	executer(int i, int j)
 
 	path = open_path();
 	g_data.heredoc_path = path;
-	if ((*g_data.cmd_table)->cmd_path == NULL)
+	if ((*g_data.cmd_table)->cmd_path == NULL && g_data.err == 2)
 	{
 		unlink(path);
 		unlink("err");

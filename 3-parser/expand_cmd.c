@@ -6,7 +6,7 @@
 /*   By: yciftci <yciftci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 20:57:09 by yciftci           #+#    #+#             */
-/*   Updated: 2023/08/12 20:57:10 by yciftci          ###   ########.fr       */
+/*   Updated: 2023/08/12 21:36:33 by yciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ void	expand_cmd(t_table **table, int i)
 
 	iter = *table;
 	value = find_values(g_data.env, "PATH", NULL);
+	if (value == NULL)
+	{
+		g_data.err = 2;
+		return ;
+	}
 	paths = ft_split(value, ':');
 	while (iter && paths[i])
 	{
