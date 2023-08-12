@@ -6,7 +6,7 @@
 /*   By: yciftci <yciftci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 20:57:50 by yciftci           #+#    #+#             */
-/*   Updated: 2023/08/12 20:57:51 by yciftci          ###   ########.fr       */
+/*   Updated: 2023/08/12 21:48:06 by yciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	handle_sigint(int sig)
 	if (sig == SIGINT)
 	{
 		ioctl(STDIN_FILENO, TIOCSTI, "\n");
-		rl_redisplay();
+		rl_replace_line("", 0);
 		rl_on_new_line();
 	}
 }
