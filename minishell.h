@@ -40,6 +40,9 @@ typedef struct s_data
 {
 	t_env			*env;
 	struct s_table	**cmd_table;
+	t_list			**splitted_str;
+	int				**pipes;
+	char			*heredoc_path;
 	int				process_count;
 	int				counter;
 	int				status;
@@ -143,5 +146,5 @@ void		free_list(t_list **list, char *prompt);
 void		free_parsed(t_table **parsed);
 void		free_matrix(char **matrix);
 void		free_fd(int **fd);
-void		free_global(void);
+void		free_global(char opt);
 #endif

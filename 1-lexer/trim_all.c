@@ -66,5 +66,6 @@ t_list	**trim_all(t_list **splited_str)
 			trim_all_extra(ret, iter, 0, 0);
 		iter = iter->next;
 	}
+	g_data.splitted_str = ret;
 	return (ret);
 }

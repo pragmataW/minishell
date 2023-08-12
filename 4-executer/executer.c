@@ -7,7 +7,7 @@ static int	main_builtin(t_table *iter)
 	status = -1;
 	if (ft_strncmp(iter->cmd_path, "exit") == 0)
 	{
-		free_global();
+		free_global('e');
 		exit(0);
 	}
 	else if (ft_strncmp(iter->cmd_path, "unset") == 0)
@@ -67,6 +67,7 @@ void	executer(int i, int j)
 	char	*path;
 
 	path = open_path();
+	g_data.heredoc_path = path;
 	if ((*g_data.cmd_table)->cmd_path == NULL)
 	{
 		unlink(path);
@@ -75,6 +76,7 @@ void	executer(int i, int j)
 		return ;
 	}
 	fd = create_pipes(g_data.process_count);
+	g_data.pipes = fd;
 	improved_exec(i, j, g_data.process_count, fd);
 	unlink(path);
 	unlink("err");

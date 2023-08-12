@@ -61,10 +61,21 @@ void	free_fd(int **fd)
 	free(fd);
 }
 
-void	free_global(void)
+void	free_global(char opt)
 {
 	free_matrix(g_data.env->keys);
 	free_matrix(g_data.env->values);
 	free(g_data.env->tilda);
 	free(g_data.env);
+	if (opt == 'e')
+	{
+		if (g_data.cmd_table)
+			free_parsed(g_data.cmd_table);
+		if (g_data.heredoc_path)
+			free(g_data.heredoc_path);
+		if (g_data.splitted_str)
+			free_list(g_data.splitted_str, NULL);
+		if (g_data.pipes)
+			free_fd(g_data.pipes);
+	}
 }

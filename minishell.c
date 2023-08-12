@@ -13,6 +13,9 @@ static void	init_global(char **env)
 	g_data.heredoc = 0;
 	g_data.status = 0;
 	g_data.err = 0;
+	g_data.splitted_str = NULL;
+	g_data.pipes = NULL;
+	g_data.heredoc_path = NULL;
 	last_status = ft_itoa(g_data.status);
 	set_value("?", last_status);
 	free(last_status);
@@ -46,7 +49,7 @@ static void	prompt_check(char *prompt)
 {
 	if (!prompt)
 	{
-		free_global();
+		free_global('\0');
 		exit(0);
 	}
 }
