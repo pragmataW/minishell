@@ -15,12 +15,10 @@ void	command_not_found(void)
 	g_data.status = 0;
 }
 
-int	quote_check(char *prompt)
+int	quote_check(char *prompt, int i)
 {
-	int		i;
 	int		quote_counter;
 
-	i = 0;
 	quote_counter = 0;
 	while (prompt[i])
 	{
@@ -40,6 +38,7 @@ int	quote_check(char *prompt)
 	else
 	{
 		printf("minishell: syntax error\n");
+		add_history(prompt);
 		return (0);
 	}
 }

@@ -23,6 +23,21 @@ static void	fill_node_extra(t_table *node, int i)
 	node->next = NULL;
 }
 
+char	*ft_duptest(const char *str)
+{
+	char	*str2;
+	size_t	len;
+
+	len = ft_strlen(str);
+	str2 = (char *)malloc(sizeof(char ) * (len + 1));
+	if (!(str2))
+	{
+		return (NULL);
+	}
+	ft_memcpy(str2, str, len + 1);
+	return (str2);
+}
+
 t_table	**fill_node(t_list **list, int i)
 {
 	t_table	**root;
@@ -39,7 +54,7 @@ t_table	**fill_node(t_list **list, int i)
 		node->full_cmd = malloc(sizeof(char *) * (node_counter(iter) + 1));
 		while (iter && ft_strncmp(iter->command, "|") != 0)
 		{
-			node->full_cmd[i] = ft_strdup(iter->command);
+			node->full_cmd[i] = ft_duptest(iter->command);
 			iter = iter->next;
 			i++;
 		}

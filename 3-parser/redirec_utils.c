@@ -39,7 +39,9 @@ void	set_heredoc_fd(t_table *iter, int i, int fd)
 		fd = open("err", O_CREAT, 777);
 	iter->infile = fd;
 	free(iter->full_cmd[i]);
+	free(iter->full_cmd[i + 1]);
 	iter->full_cmd[i] = NULL;
+	iter->full_cmd[i + 1] = NULL;
 	g_data.heredoc = 1;
 }
 
