@@ -6,7 +6,7 @@
 /*   By: yciftci <yciftci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/12 20:57:59 by yciftci           #+#    #+#             */
-/*   Updated: 2023/08/12 20:58:00 by yciftci          ###   ########.fr       */
+/*   Updated: 2023/08/15 17:13:51 by yciftci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	redirec_syntax_check(t_list **lexed_str)
 	i = *lexed_str;
 	if (!i)
 		return ;
-	if (i->command[0] == '>' || i->command[0] == '<')
+	if (i->command[0] == '>' || (i->command[0] == '<' && i->command[1] != '<'))
 	{
 		g_data.err = 1;
 		return ;
