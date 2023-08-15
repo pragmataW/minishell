@@ -1,6 +1,6 @@
 M I N I S H E L L
 
-![minishell mind map](https://github.com/pragmataW/minishell/blob/master/plans%20for%20minishell/Screenshot%20from%202023-08-15%2017-50-23.png)
+![minishell mind map](https://github.com/pragmataW/minishell/blob/master/plans/Screenshot%20from%202023-08-15%2017-50-23.png)
 <br>
 1- LEXER
 <br>
